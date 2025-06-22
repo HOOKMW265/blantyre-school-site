@@ -2,26 +2,40 @@
 <html>
 <head>
     <title>Students’ Corner - Blantyre Secondary School</title>
+    <script>
+        function checkResults() {
+            var studentId = document.getElementById("studentId").value;
+            var result = "";
+
+            // Sample student results
+            var resultsDatabase = {
+                "BSS001": "Maths: 78, English: 85, Science: 90",
+                "BSS002": "Maths: 65, English: 70, Science: 75",
+                "BSS003": "Maths: 92, English: 88, Science: 94"
+            };
+
+            if (resultsDatabase[studentId]) {
+                result = "Results for " + studentId + ":<br>" + resultsDatabase[studentId];
+            } else {
+                result = "No results found for Student ID: " + studentId;
+            }
+
+            document.getElementById("resultDisplay").innerHTML = result;
+        }
+    </script>
 </head>
 <body>
     <h1>Students’ Corner</h1>
 
-    <p>Welcome students! Here you'll find announcements, exam results, and academic updates.</p>
+    <p>Welcome! Enter your Student ID to check your exam results:</p>
 
-    <h2>📢 Latest Announcements</h2>
-    <ul>
-        <li>📅 Mid-term exams start on July 1st, 2025.</li>
-        <li>🎉 Prize Giving Day is on July 20th, 2025.</li>
-    </ul>
+    <input type="text" id="studentId" placeholder="e.g. BSS001" />
+    <button onclick="checkResults()">Check Results</button>
 
-    <h2>📄 Check Your Exam Results</h2>
-    <p>Enter your Student ID to check your results (Coming soon!)</p>
-
-    <input type="text" placeholder="Enter Student ID" />
-    <button disabled>Check Results</button>
-    <p><em>Note: This feature will be activated soon.</em></p>
+    <p id="resultDisplay" style="margin-top: 20px; font-weight: bold;"></p>
 
     <br>
     <a href="index.html">← Back to Home</a>
 </body>
 </html>
+
