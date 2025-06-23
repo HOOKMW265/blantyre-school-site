@@ -1,152 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Students’ Corner - Blantyre Secondary School</title>
-    <script>
-        function checkResults() {
-            var studentId = document.getElementById("studentId").value;
-            var result = "";
+<section id="students-corner" style="padding: 2rem; font-family: Arial, sans-serif; background-color: #f0f4f8;">
+  <h2 style="color: #1a237e;">🎒 Students’ Corner</h2>
+  <p style="font-style: italic; color: #444;">Success comes through discipline.</p>
 
-            // Sample student results
-            var resultsDatabase = {
-                "BSS001": "Maths: 78, English: 85, Science: 90",
-                "BSS002": "Maths: 65, English: 70, Science: 75",
-                "BSS003": "Maths: 92, English: 88, Science: 94"
-            };
+  <hr>
 
-            if (resultsDatabase[studentId]) {
-                result = "Results for " + studentId + ":<br>" + resultsDatabase[studentId];
-            } else {
-                result = "No results found for Student ID: " + studentId;
-            }
-
-            document.getElementById("resultDisplay").innerHTML = result;
-        }
-    </script>
-</head>
-<body>
-    <h1>Students’ Corner</h1>
-
+  <div style="margin-top: 1.5rem;">
+    <h3>🔍 Check Your Exam Results</h3>
     <p>Welcome! Enter your Student ID to check your exam results:</p>
+    <input type="text" placeholder="e.g. BSS001" style="padding: 0.5rem; width: 250px; border-radius: 5px; border: 1px solid #ccc;">
+    <button style="padding: 0.5rem 1rem; margin-left: 10px; background-color: #1a237e; color: white; border: none; border-radius: 5px;">Check Results</button>
+  </div>
 
-    <input type="text" id="studentId" placeholder="e.g. BSS001" />
-    <button onclick="checkResults()">Check Results</button>
-
-    <p id="resultDisplay" style="margin-top: 20px; font-weight: bold;"></p>
-
-    <br>
-    <a href="index.html">← Back to Home</a>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Students’ Corner - Blantyre Secondary School</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Roboto', sans-serif; margin: 0; background: #f4f6f8; color: #333; }
-    header, footer { background: #003366; color: white; text-align: center; padding: 1rem 2rem; }
-    nav { background: #0055a5; display: flex; justify-content: center; padding: 1rem 0; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .content { max-width: 900px; margin: 2rem auto; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.05); }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Students’ Corner</h1>
-    <p>Useful information and tools for students</p>
-  </header>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="students.html">Students’ Corner</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <div class="content">
-    <h2>Student Resources</h2>
-    <ul>
-      <li>📅 Timetables</li>
-      <li>📢 Announcements</li>
-      <li>📚 Study Tips</li>
-      <li>🎓 Exam Results (Coming soon)</li>
+  <div style="margin-top: 2rem;">
+    <h3>📚 Student Resources</h3>
+    <ul style="line-height: 1.8;">
+      <li>📅 <strong>Timetables</strong></li>
+      <li>📢 <strong>Announcements</strong></li>
+      <li>📚 <strong>Study Tips</strong></li>
+      <li>🎓 <strong>Exam Results</strong> (Coming soon)</li>
     </ul>
-
-    <p>Check back regularly for the latest updates from your teachers and school administration.</p>
+    <p style="color: #555;">Check back regularly for the latest updates from your teachers and school administration.</p>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Blantyre Secondary School</p>
+  <div style="margin-top: 2rem; padding: 1rem; background-color: #e8f0fe; border-left: 4px solid #1a237e;">
+    <h3>🏆 Student Achievement Spotlight</h3>
+    <p><strong>Blessings Phambala Wins Public Speaking Competition</strong></p>
+    <p>Blantyre Secondary School is proud to announce that <strong>Blessings Phambala</strong>, a Form 3 student, has emerged as the champion of the inaugural <em>Blantyre City Public Speaking Competition</em> held at Golden Peacock Hotel.</p>
+    <ul>
+      <li>🥇 1st Place: Blessings Phambala (Blantyre Secondary School)</li>
+      <li>🥈 2nd Place: Eve Kaime (Swema Private Secondary School)</li>
+      <li>🥉 3rd Place: Fly Kantefa</li>
+    </ul>
+    <p>👏 Join us in celebrating her outstanding achievement!</p>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <a href="index.html" style="text-decoration: none; color: #1a237e;">← Back to Home</a>
+  </div>
+
+  <footer style="margin-top: 3rem; text-align: center; font-size: 0.9rem; color: #666;">
+    &copy; 2025 Blantyre Secondary School
   </footer>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Students’ Corner - Blantyre Secondary School</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-  <style>
-    body { font-family: 'Roboto', sans-serif; margin: 0; background: #f4f6f8; color: #333; }
-    header, footer { background: #003366; color: white; text-align: center; padding: 1.5rem; }
-    nav { background: #0055a5; display: flex; justify-content: center; padding: 1rem 0; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .section { max-width: 900px; margin: 2rem auto; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Students’ Corner</h1>
-    <p><em>Success comes through discipline.</em></p>
-  </header>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="students.html">Students’ Corner</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <div class="section">
-    <p>Students’ Corner</p>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Blantyre Secondary School</p>
-  </footer>
-
-</body>
-</html>
-
-<section style="padding: 2rem; background-color: #f0f4f8; border-radius: 12px; margin: 2rem 0;">
-  <h2 style="color: #2c3e50; text-align: center;">🏆 Student Achievement Spotlight</h2>
-  <h3 style="text-align: center; color: #1a5276;">Blessings Phambala Wins Public Speaking Competition</h3>
-
-  <p style="font-size: 1rem; line-height: 1.6;">
-    Blantyre Secondary School is proud to announce that <strong>Blessings Phambala</strong>, a Form 3 student, has emerged as the <strong>champion</strong> of the inaugural <em>Blantyre City Public Speaking Competition</em> held at Golden Peacock Hotel. 
-    She competed against 14 contestants from 9 schools and claimed the top prize of <strong>MWK 500,000</strong>.
-  </p>
-
-  <ul style="font-size: 1rem; line-height: 1.6;">
-    <li>🥇 1st Place: Blessings Phambala (Blantyre Secondary School)</li>
-    <li>🥈 2nd Place: Eve Kaime (Swema Private Secondary School)</li>
-    <li>🥉 3rd Place: Fly Kantefa</li>
-  </ul>
-
-  <div style="text-align: center; margin: 2rem 0;">
-    <img src="images/BSS1.jpg" alt="Blessings Phambala Receiving Trophy" style="width: 90%; max-width: 600px; border-radius: 10px; margin-bottom: 1rem;">
-    <img src="images/bss.jpg" alt="Blessings Phambala with Other Winners" style="width: 90%; max-width: 600px; border-radius: 10px;">
-  </div>
-
-  <p style="text-align: center; font-style: italic; color: #34495e;">"Success Comes Through Discipline"</p>
 </section>
+
 
