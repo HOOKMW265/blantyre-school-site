@@ -13,6 +13,37 @@
       color: #333;
     }
 
+    h1, h2, h3 {
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    a {
+      transition: all 0.3s ease-in-out;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    .section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
     .navbar {
       position: sticky;
       top: 0;
@@ -42,7 +73,6 @@
       color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
     }
 
     .nav-links a:hover {
@@ -118,33 +148,23 @@
         display: block;
       }
     }
-
-    .section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
   </style>
 </head>
 <body>
 
-<!-- Hero Section -->
-<section style="background-color: #2e86de; padding: 80px 20px; text-align: center; color: white; border-bottom: 4px solid #1b4f72;">
-  <h1 style="font-size: 3rem; margin-bottom: 10px;">Welcome to Blantyre Secondary School</h1>
-  <p style="font-size: 1.5rem; font-style: italic;">"Success Comes Through Discipline"</p>
+<!-- Hero Section Polished -->
+<section style="background: linear-gradient(to right, #1b4f72, #2e86de); padding: 100px 20px; text-align: center; color: white;">
+  <h1 style="font-size: 3.2rem; font-family: 'Georgia', serif;">Welcome to Blantyre Secondary School</h1>
+  <p style="font-size: 1.6rem; font-style: italic; color: #ffdd66; margin-top: 10px;">"Success Comes Through Discipline"</p>
 </section>
 
-<!-- ✅ NAVBAR WITH DROPDOWN -->
+<!-- NAVBAR WITH DROPDOWN -->
 <div class="navbar">
   <div class="logo">Blantyre Secondary School</div>
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-
     <div class="dropdown">
       <a href="#">Students ⌄</a>
       <div class="dropdown-content" id="dropdownContent">
@@ -153,13 +173,12 @@
         <a href="gallery.html">Gallery</a>
       </div>
     </div>
-
     <a href="news.html">News</a>
     <a href="contact.html">Contact</a>
   </div>
 </div>
 
-<!-- ✅ JS FOR MENU -->
+<!-- JS MENU TOGGLE -->
 <script>
   function toggleMenu() {
     const nav = document.getElementById('navLinks');
@@ -171,27 +190,28 @@
 </script>
 
 <!-- Welcome Section -->
-<section style="padding: 40px 20px; background-color: #f8f9f9; text-align: center;">
-  <h2 style="color: #2c3e50;">Who We Are</h2>
-  <p style="max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.6;">
+<section style="background-color: #f8f9f9; text-align: center;">
+  <h2 style="color: #1b4f72; font-size: 2.2rem;">📘 Who We Are</h2>
+  <p style="max-width: 800px; margin: auto;">
     Blantyre Secondary School is committed to academic excellence, character development, and nurturing future leaders of Malawi. 
     Our dedicated staff and disciplined students create a thriving learning environment.
   </p>
 </section>
 
 <!-- Latest News Section -->
-<section style="padding: 40px 20px; background-color: #ffffff; text-align: center;">
-  <h2 style="color: #2c3e50;">📢 Latest News</h2>
+<section style="background-color: #ffffff; text-align: center;">
+  <h2 style="color: #1b4f72; font-size: 2.2rem;">📢 Latest News</h2>
   <p>Visit our <a href="students.html" style="color: #1b4f72; text-decoration: underline;">Students' Corner</a> to read about Blessings Phambala's amazing win at the Public Speaking Competition!</p>
 </section>
 
-<!-- Quick Info / Footer Section -->
-<section style="padding: 30px 20px; background-color: #2e86de; color: white; text-align: center;">
+<!-- Footer -->
+<section style="padding: 50px 20px; background-color: #1b4f72; color: white; text-align: center;">
   <h3>📍 Visit Us</h3>
   <p>Blantyre Secondary School, 627H+GRR, Blantyre, Malawi</p>
   <p>📧 Email: info@blantyress.mw | ☎️ Phone: +265 999 123 456</p>
-  <p style="font-size: 0.9rem; margin-top: 20px;">&copy; 2025 Blantyre Secondary School. All Rights Reserved.</p>
+  <p style="font-size: 0.95rem; margin-top: 25px;">&copy; 2025 Blantyre Secondary School. Designed with care in Malawi 🇲🇼</p>
 </section>
 
 </body>
 </html>
+
