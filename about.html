@@ -12,24 +12,33 @@
       margin: 0;
       padding: 0;
     }
-    header {
-      background: #1a237e;
+
+    /* Navbar */
+    .navbar {
+      background-color: #0d47a1;
       color: white;
-      padding: 2rem;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
     }
-    nav {
-      background: #e8eaf6;
-      padding: 1rem;
-      text-align: center;
+    .navbar .logo {
+      color: gold;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
-    nav a {
-      margin: 0 10px;
+    .navbar a {
+      color: white;
+      margin-left: 1rem;
       text-decoration: none;
-      color: #1a237e;
       font-weight: bold;
     }
-    .container {
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    /* Container */
+    .content {
       max-width: 900px;
       margin: 2rem auto;
       background: white;
@@ -37,38 +46,49 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
+
+    h1 {
+      color: #0d47a1;
+      text-align: center;
+    }
     h2 {
       color: #1a237e;
       margin-bottom: 1rem;
     }
+
     .section {
       margin-bottom: 2rem;
     }
+
     ul {
       list-style-type: disc;
       padding-left: 1.5rem;
+    }
+
+    p {
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Blantyre Secondary School</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="students.html">Students</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="content">
     <h1>About Blantyre Secondary School</h1>
-    <p><em>“Success comes through discipline.”</em></p>
-  </header>
+    <p style="text-align: center; font-style: italic; color: #555;">“Success comes through discipline.”</p>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="learning.html">Learning</a>
-    <a href="student-life.html">Student Life</a>
-    <a href="join-us.html">Join Us</a>
-    <a href="news.html">News</a>
-    <a href="events.html">Events</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <div class="container">
     <div class="section">
       <h2>Who We Are</h2>
       <p>Founded in 1940, <strong>Blantyre Secondary School</strong> is one of Malawi’s most respected academic institutions. Situated in the heart of Blantyre City, we are committed to academic excellence, student growth, and leadership development.</p>
@@ -103,6 +123,7 @@
 
 </body>
 </html>
+
 
 
 
