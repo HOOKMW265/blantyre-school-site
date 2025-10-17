@@ -9,45 +9,49 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      height: 100vh;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     #students-corner {
-      padding: 2rem;
+      padding: 2rem 2.5rem;
       background-color: #ffffff;
-      max-width: 800px;
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 850px;
+      width: 95%;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
     h2 {
-      color: #1a237e;
-      font-size: 1.8rem;
+      color: #0d47a1;
+      font-size: 2rem;
       text-align: center;
+      margin-bottom: 0.3rem;
     }
 
     p {
       color: #444;
       text-align: center;
+      margin-top: 0;
     }
 
     hr {
       margin: 1.5rem 0;
-      border-color: #ccc;
+      border: none;
+      border-top: 1px solid #ccc;
     }
 
     input[type="text"],
     input[type="date"] {
       padding: 0.6rem;
-      flex: 1 1 200px;
+      flex: 1 1 220px;
       max-width: 250px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      font-size: 1rem;
     }
 
     button {
@@ -55,8 +59,14 @@
       background-color: #1a237e;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 1rem;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0d1b6a;
     }
 
     ul {
@@ -64,12 +74,19 @@
       padding-left: 1rem;
       list-style: none;
       text-align: left;
+      color: #333;
+      font-size: 1rem;
     }
 
     a {
       text-decoration: none;
       color: #1a237e;
       font-weight: bold;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #0d47a1;
     }
 
     footer {
@@ -77,6 +94,28 @@
       text-align: center;
       font-size: 0.9rem;
       color: #666;
+    }
+
+    .form-section {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.6rem;
+      }
+      input, button {
+        width: 100%;
+        max-width: 100%;
+      }
+      .form-section {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     @media (max-height: 700px) {
@@ -90,16 +129,16 @@
 <body>
 
   <section id="students-corner">
-    <h2>Blantyre secondary school</h2>
+    <h2>Blantyre Secondary School</h2>
     <p style="font-style: italic;">"Success comes through discipline".</p>
 
     <hr>
 
     <!-- Exam Results -->
-    <div style="margin-top: 1.5rem;">
+    <div>
       <h3 style="color: #1a237e;">🔍 Check Your Exam Results</h3>
-      <p style="text-align: center;">Welcome! Enter your Student ID and Date of Birth to check your results:</p>
-      <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 1rem;">
+      <p>Welcome! Enter your Student ID and Date of Birth to check your results:</p>
+      <div class="form-section">
         <input type="text" id="student-id" placeholder="Student ID (e.g. BSS001)" />
         <input type="date" id="dob" />
         <button onclick="checkResults()">Check Results</button>
@@ -150,7 +189,6 @@
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          // For now, just alerting; you can replace this with HTML rendering later
           alert(`Results found:\n${JSON.stringify(data.results, null, 2)}`);
         } else {
           alert("No results found or incorrect credentials.");
@@ -165,4 +203,3 @@
 
 </body>
 </html>
-
