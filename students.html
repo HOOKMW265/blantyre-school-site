@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Students' Corner</title>
   <style>
     body {
@@ -41,7 +41,8 @@
       border-color: #ccc;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="date"] {
       padding: 0.6rem;
       flex: 1 1 200px;
       max-width: 250px;
@@ -97,10 +98,11 @@
     <!-- Exam Results -->
     <div style="margin-top: 1.5rem;">
       <h3 style="color: #1a237e;">🔍 Check Your Exam Results</h3>
-      <p style="text-align: center;">Welcome! Enter your Student ID to check your exam results:</p>
+      <p style="text-align: center;">Welcome! Enter your Student ID and Date of Birth to check your results:</p>
       <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 1rem;">
-        <input type="text" placeholder="e.g. BSS001">
-        <button>Check Results</button>
+        <input type="text" id="student-id" placeholder="Student ID (e.g. BSS001)" />
+        <input type="date" id="dob" />
+        <button onclick="checkResults()">Check Results</button>
       </div>
     </div>
 
@@ -127,5 +129,40 @@
     </footer>
   </section>
 
+  <!-- JavaScript for result check -->
+  <script>
+    function checkResults() {
+      const studentId = document.getElementById("student-id").value.trim();
+      const dob = document.getElementById("dob").value.trim();
+
+      if (!studentId || !dob) {
+        alert("Please enter both your Student ID and Date of Birth.");
+        return;
+      }
+
+      fetch("/api/results", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ studentId, dob })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // For now, just alerting; you can replace this with HTML rendering later
+          alert(`Results found:\n${JSON.stringify(data.results, null, 2)}`);
+        } else {
+          alert("No results found or incorrect credentials.");
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching results:", err);
+        alert("An error occurred while checking your results.");
+      });
+    }
+  </script>
+
 </body>
 </html>
+
