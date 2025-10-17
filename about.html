@@ -13,28 +13,66 @@
       padding: 0;
     }
 
-    /* Navbar */
+    /* Updated Navbar */
     .navbar {
-      background-color: #0d47a1;
-      color: white;
+      position: sticky;
+      top: 0;
+      background-color: #1b4f72;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
+      z-index: 1000;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
+
     .navbar .logo {
-      color: gold;
+      font-size: 1.5rem;
       font-weight: bold;
-      font-size: 1.2rem;
+      color: #ffcc00;
     }
-    .navbar a {
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .nav-links a {
       color: white;
-      margin-left: 1rem;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
     }
-    .navbar a:hover {
-      text-decoration: underline;
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #1b4f72;
+      top: 35px;
+      left: 0;
+      min-width: 150px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 10;
+      flex-direction: column;
+    }
+
+    .dropdown-content a {
+      padding: 10px 15px;
+      white-space: nowrap;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
     }
 
     /* Content */
@@ -84,10 +122,17 @@
   <!-- Navbar -->
   <div class="navbar">
     <div class="logo">Blantyre Secondary School</div>
-    <div>
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="students.html">Students</a>
+      <div class="dropdown">
+        <a href="students.html">Students ▾</a>
+        <div class="dropdown-content">
+          <a href="clubs.html">Clubs</a>
+          <a href="sports.html">Sports</a>
+          <a href="prefects.html">Prefects</a>
+        </div>
+      </div>
       <a href="news.html">News</a>
       <a href="contact.html">Contact</a>
     </div>
@@ -137,6 +182,7 @@
 
 </body>
 </html>
+
 
 
 
