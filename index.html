@@ -15,46 +15,17 @@
 
     h1, h2, h3 {
       font-family: 'Georgia', serif;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin: 0.5rem 0 1.5rem 0;
-    }
-
-    section {
-      padding: 60px 20px;
-    }
-
-    a {
-      transition: all 0.3s ease-in-out;
-    }
-
-    a:hover {
-      opacity: 0.8;
-    }
-
-    .section {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .navbar {
-      position: sticky;
-      top: 0;
       background-color: #1b4f72;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
       z-index: 1000;
-      font-family: 'Segoe UI', sans-serif;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .navbar .logo {
@@ -66,7 +37,6 @@
     .nav-links {
       display: flex;
       gap: 1.5rem;
-      position: relative;
     }
 
     .nav-links a {
@@ -79,194 +49,134 @@
       color: #ffcc00;
     }
 
-    .dropdown {
-      position: relative;
+    .section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
+    .news-item {
+      margin-bottom: 2rem;
+    }
+
+    .news-item h3 {
+      color: #1b4f72;
+    }
+
+    .news-item p {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .news-item .date {
+      font-size: 0.95rem;
+      color: #999;
+    }
+
+    .news-item .description {
+      font-size: 1.1rem;
+    }
+
+    .footer {
+      padding: 40px 20px;
       background-color: #1b4f72;
-      top: 35px;
-      left: 0;
-      min-width: 150px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      border-radius: 5px;
-      z-index: 10;
-      flex-direction: column;
-    }
-
-    .dropdown-content a {
-      padding: 10px 15px;
-      white-space: nowrap;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: flex;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
       color: white;
-      cursor: pointer;
-      border: none;
-      background: none;
+      text-align: center;
+    }
+
+    .footer p {
+      margin-top: 15px;
+      font-size: 0.95rem;
     }
 
     @media (max-width: 768px) {
       .nav-links {
-        display: none;
         flex-direction: column;
-        width: 100%;
-        background-color: #1b4f72;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        padding: 1rem 2rem;
       }
-
-      .nav-links.show {
-        display: flex;
+      .news-item img {
+        max-width: 100%;
+        height: auto;
       }
-
-      .dropdown-content {
-        position: static;
-        box-shadow: none;
-        border-radius: 0;
-      }
-
-      .dropdown .dropdown-content.show {
-        display: flex;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    /* Animation for Hero Text */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-text {
-      animation: fadeInUp 1.5s ease-out forwards;
-      opacity: 0;
-    }
-
-    .hero-subtext {
-      animation: fadeInUp 2.3s ease-out forwards;
-      opacity: 0;
-    }
-
-    /* Hero Section Button */
-    .cta-btn {
-      display: inline-block;
-      background-color: #ffcc00;
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      color: #1b4f72;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      transition: background-color 0.3s;
-    }
-
-    .cta-btn:hover {
-      background-color: #e6b800;
     }
   </style>
 </head>
 <body>
 
-<!-- Hero Section with Animation -->
-<section style="background: linear-gradient(to right, #1b4f72, #2e86de); padding: 100px 20px; text-align: center; color: white;">
-  <h1 class="hero-text" style="font-size: 3.2rem; font-family: 'Georgia', serif;">Welcome to Blantyre Secondary School</h1>
-  <p class="hero-subtext" style="font-size: 1.6rem; font-style: italic; color: #ffdd66; margin-top: 10px;">"Success Comes Through Discipline"</p>
-  <a href="about.html" class="cta-btn">Learn More About Us</a>
-</section>
-
-<!-- NAVBAR WITH DROPDOWN -->
+<!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">Blantyre Secondary School</div>
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <div class="nav-links" id="navLinks">
+  <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <div class="dropdown">
-      <a href="#">Students ⌄</a>
-      <div class="dropdown-content" id="dropdownContent">
-        <a href="results.html">Results</a>
-        <a href="clubs.html">Clubs</a>
-        <a href="gallery.html">Gallery</a>
-      </div>
-    </div>
+    <a href="students.html">Students</a>
     <a href="news.html">News</a>
     <a href="contact.html">Contact</a>
   </div>
 </div>
 
-<!-- JS MENU TOGGLE -->
-<script>
-  function toggleMenu() {
-    const nav = document.getElementById('navLinks');
-    nav.classList.toggle('show');
-
-    const dropdown = document.getElementById('dropdownContent');
-    dropdown.classList.toggle('show');
-  }
-</script>
-
-<!-- Welcome Section -->
-<section style="background-color: #f8f9f9; text-align: center;">
-  <h2 style="color: #1b4f72; font-size: 2.2rem;">📘 Who We Are</h2>
-  <p style="max-width: 800px; margin: auto;">
-    Blantyre Secondary School is committed to academic excellence, character development, and nurturing future leaders of Malawi. 
-    Our dedicated staff and disciplined students create a thriving learning environment.
-  </p>
+<!-- Hero Section -->
+<section style="background: linear-gradient(to right, #1b4f72, #2e86de); padding: 100px 20px; text-align: center; color: white;">
+  <h1 style="font-size: 3.2rem; font-family: 'Georgia', serif;">Welcome to Blantyre Secondary School</h1>
+  <p style="font-size: 1.6rem; font-style: italic; color: #ffdd66; margin-top: 10px;">"Success Comes Through Discipline"</p>
+  <a href="about.html" style="display: inline-block; background-color: #ffcc00; padding: 12px 30px; font-size: 1.2rem; color: #1b4f72; text-decoration: none; border-radius: 5px; margin-top: 20px;">Learn More About Us</a>
 </section>
 
-<!-- Latest News Section -->
-<section style="background-color: #ffffff; text-align: center;">
-  <h2 style="color: #1b4f72; font-size: 2.2rem;">📢 Latest News</h2>
-  <div style="max-width: 800px; margin: auto;">
-    <h3>Blessings Phambala Shines at Public Speaking Competition 🏆</h3>
-    <p><strong>Date:</strong> June 20, 2025</p>
-    <a href="news-detail.html">
-      <img src="images/blessings-phambala.jpg" alt="Blessings Phambala" style="width: 100%; max-width: 400px; height: auto; border-radius: 8px; margin-top: 20px;" />
-    </a>
-    <p>
-      Blantyre Secondary School student <strong>Blessings Phambala</strong> has been crowned the winner of the inaugural 
-      <em>Blantyre City Public Speaking Competition</em> for Secondary Schools. The event took place at Golden Peacock Hotel, 
-      where students from various schools showcased their eloquence and passion. Her speech on youth empowerment earned a standing ovation.
-    </p>
-    <p>
-      Congratulations to Blessings for making BSS proud! 👏 We look forward to more achievements from our students.
+<!-- Top Stories Section -->
+<section class="section">
+  <h2 style="color:#1b4f72;">📢 Top Stories</h2>
+
+  <!-- Story 1 -->
+  <div class="news-item">
+    <h3>SAIntS Delegates Impress at ALAMAU</h3>
+    <p class="date">March 2025</p>
+    <p class="description">
+      SAIntS delegates made a huge impact during the 2025 African Leadership Academy Model African Union (ALAMAU) conference in Johannesburg, securing an incredible 14 awards across various committees.
     </p>
   </div>
+
+  <!-- Story 2 -->
+  <div class="news-item">
+    <h3>Global School Guidance</h3>
+    <p class="date">January 2025</p>
+    <p class="description">
+      Mr Gunda, a Senior Teacher and biology teacher here at SAIntS, has been selected as a consultant to co-author a guidebook for school leaders in Africa.
+    </p>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="news-item">
+    <h3>Ioulia Shines in Invincible Season</h3>
+    <p class="date">January 2025</p>
+    <p class="description">
+      Ioulia (Year 12) celebrated winning the 2024 Goshen FAM Women’s Football Southern League with Nyasa Big Bullets FC (Women’s). Find out what she had to say about her experience.
+    </p>
+  </div>
+
+  <!-- Story 4 -->
+  <div class="news-item">
+    <h3>Leaders in Africa</h3>
+    <p class="date">November 2024</p>
+    <p class="description">
+      A number of our students received special recognition from Pearson Edexcel for achieving outstanding results in the 2023/24 international examination series.
+    </p>
+  </div>
+
 </section>
 
-<!-- Footer -->
-<section style="padding: 50px 20px; background-color: #1b4f72; color: white; text-align: center;">
+<!-- FOOTER -->
+<div class="footer">
   <h3>📍 Visit Us</h3>
-  <p>Blantyre Secondary School, 627H+GRR, Blantyre, Malawi</p>
-  <p>📧 Email: info@blantyress.mw | ☎️ Phone: 01687706</p>
-  <p style="font-size: 0.95rem; margin-top: 25px;">&copy; 2025 Blantyre Secondary School. Designed with care in Malawi 🇲🇼</p>
-</section>
+  <p>Blantyre Secondary School, Ndirande, Blantyre, Malawi</p>
+  <p>📧 Email: info@blantyress.mw | ☎️ +265 999 123 456</p>
+  <p>&copy; 2025 Blantyre Secondary School. Designed with care in Malawi 🇲🇼</p>
+</div>
 
 </body>
 </html>
+
+
 
 
