@@ -1,336 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Students' Corner</title>
-
-  <!-- ✅ Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', Arial, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #students-corner {
-      padding: 2rem 2.5rem;
-      background-color: #ffffff;
-      max-width: 850px;
-      width: 95%;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    h2 {
-      color: #0d47a1;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 0.3rem;
-    }
-
-    p {
-      color: #444;
-      text-align: center;
-      margin-top: 0;
-    }
-
-    hr {
-      margin: 1.5rem 0;
-      border: none;
-      border-top: 1px solid #ccc;
-    }
-
-    input[type="text"],
-    input[type="date"] {
-      padding: 0.6rem;
-      flex: 1 1 220px;
-      max-width: 250px;
-      border-radius: 6px;
-      border: 1px solid #bbb;
-      font-size: 1rem;
-    }
-
-    button {
-      padding: 0.6rem 1.2rem;
-      background-color: #1a237e;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0d1b6a;
-    }
-
-    ul {
-      line-height: 1.8;
-      padding-left: 1rem;
-      list-style: none;
-      text-align: left;
-      color: #333;
-      font-size: 1rem;
-    }
-
-    a {
-      text-decoration: none;
-      color: #1a237e;
-      font-weight: bold;
-      transition: color 0.2s ease;
-    }
-
-    a:hover {
-      color: #0d47a1;
-    }
-
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .form-section {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .form-section label {
-      font-size: 1rem;
-      color: #333;
-      margin-right: 10px;
-    }
-
-    #loading-spinner {
-      display: none;
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    /* ✅ Styled Result Card */
-    #result-display {
-      display: none;
-      margin-top: 1.5rem;
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      border-left: 6px solid #1a237e;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 1.5rem;
-      font-family: 'Poppins', Arial, sans-serif;
-      color: #333;
-    }
-
-    #result-display h4 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      color: #1a237e;
-      margin-bottom: 1rem;
-    }
-
-    .result-row {
-      margin-bottom: 0.4rem;
-      font-size: 1rem;
-    }
-
-    .result-row span.label {
-      font-weight: bold;
-      display: inline-block;
-      width: 90px;
-    }
-
-    .subject-table {
-      margin-top: 1rem;
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .subject-table th,
-    .subject-table td {
-      border: 1px solid #ccc;
-      padding: 8px 12px;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    .subject-table th {
-      background-color: #f0f4f8;
-      color: #1a237e;
-    }
-
-    @media (max-width: 768px) {
-      h2 {
-        font-size: 1.6rem;
-      }
-      input, button {
-        width: 100%;
-        max-width: 100%;
-      }
-      .form-section {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
-    @media (max-height: 700px) {
-      body {
-        align-items: flex-start;
-        padding-top: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Results Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .subject-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subject-table th {
+            background: #374151;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .subject-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+        }
+        
+        .subject-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subject-table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .label {
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        .grade-a { color: #059669; font-weight: bold; }
+        .grade-b { color: #0891b2; font-weight: bold; }
+        .grade-c { color: #d97706; font-weight: bold; }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 min-h-full">
+    <main class="container mx-auto px-4 py-8 max-w-2xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">🎓 Student Results Portal</h1>
+            <p class="text-gray-600">Enter your credentials to view your exam results</p>
+        </header>
 
-  <section id="students-corner">
-    <h2>Blantyre Secondary School</h2>
-    <p style="font-style: italic;">"Success comes through discipline".</p>
-
-    <hr>
-
-    <!-- Exam Results -->
-    <div>
-      <h3 style="color: #1a237e;">🔍 Check Your Exam Results</h3>
-      <p>Welcome! Enter your Student ID and Date of Birth to check your results:</p>
-      <div class="form-section">
-        <div>
-          <label for="student-id">Student ID:</label>
-          <input type="text" id="student-id" placeholder="Student ID (e.g. BSS001)" />
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <form onsubmit="event.preventDefault(); checkResults();" class="space-y-4">
+                <div>
+                    <label for="student-id" class="block text-sm font-medium text-gray-700 mb-2">
+                        Student ID
+                    </label>
+                    <input 
+                        type="text" 
+                        id="student-id" 
+                        placeholder="e.g. BSS001"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    >
+                </div>
+                
+                <div>
+                    <label for="dob" class="block text-sm font-medium text-gray-700 mb-2">
+                        Date of Birth
+                    </label>
+                    <input 
+                        type="date" 
+                        id="dob"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    >
+                </div>
+                
+                <button 
+                    type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    Check Results
+                </button>
+            </form>
         </div>
-        <div>
-          <label for="dob">Date of Birth:</label>
-          <input type="date" id="dob" />
+
+        <div id="loading-spinner" class="text-center py-8" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p class="text-gray-600 mt-4">Loading your results...</p>
         </div>
-        <button onclick="checkResults()">Check Results</button>
-      </div>
 
-      <!-- Loading Spinner -->
-      <div id="loading-spinner">Loading...</div>
+        <div id="result-display" class="result-card" style="display: none;">
+            <!-- Results will be populated here -->
+        </div>
 
-      <!-- Display Result -->
-      <div id="result-display"></div>
-    </div>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+            <h3 class="font-semibold text-blue-800 mb-2">📝 Sample Credentials for Testing:</h3>
+            <div class="text-sm text-blue-700 space-y-1">
+                <p><strong>Student ID:</strong> BSS001 | <strong>DOB:</strong> 2005-04-12</p>
+                <p><strong>Student ID:</strong> BSS002 | <strong>DOB:</strong> 2005-06-20</p>
+            </div>
+        </div>
+    </main>
 
-    <!-- Student Resources -->
-    <div style="margin-top: 2rem;">
-      <h3 style="color: #1a237e;">📚 Student Resources</h3>
-      <ul>
-        <li>📅 <strong>Timetables</strong></li>
-        <li>📢 <strong>Announcements</strong></li>
-        <li>📚 <strong>Study Tips</strong></li>
-        <li>🎓 <strong>Exam Results</strong> (Coming soon)</li>
-      </ul>
-      <p style="margin-top: 1rem;">Check back regularly for the latest updates from your teachers and school administration.</p>
-    </div>
+    <script>
+        const sampleResults = {
+            "BSS001": {
+                dob: "2005-04-12",
+                name: "Thandiwe Banda",
+                form: "Form 2",
+                class: "Center",
+                results: {
+                    "Mathematics": "A",
+                    "English": "B+",
+                    "Biology": "A-",
+                    "Chemistry": "B",
+                    "History": "A"
+                }
+            },
+            "BSS002": {
+                dob: "2005-06-20",
+                name: "Chikondi Phiri",
+                form: "Form 3",
+                class: "West Wing",
+                results: {
+                    "Mathematics": "B",
+                    "English": "A",
+                    "Physics": "A+",
+                    "Geography": "B+",
+                    "Chichewa": "A"
+                }
+            }
+        };
 
-    <!-- Back Link -->
-    <div style="margin-top: 2rem; text-align: center;">
-      <a href="index.html">← Back to Home</a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      &copy; 2025 Blantyre Secondary School
-    </footer>
-  </section>
-
-  <!-- JavaScript for result check -->
-  <script>
-    const sampleResults = {
-      "BSS001": {
-        dob: "2005-04-12",
-        name: "Thandiwe Banda",
-        form: "Form 2",
-        class: "Center",
-        results: {
-          "Mathematics": "A",
-          "English": "B+",
-          "Biology": "A-",
-          "Chemistry": "B",
-          "History": "A"
+        function showMessage(message, isError = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
         }
-      },
-      "BSS002": {
-        dob: "2005-06-20",
-        name: "Chikondi Phiri",
-        form: "Form 3",
-        class: "West Wing",
-        results: {
-          "Mathematics": "B",
-          "English": "A",
-          "Physics": "A+",
-          "Geography": "B+",
-          "Chichewa": "A"
+
+        function checkResults() {
+            const studentId = document.getElementById("student-id").value.trim().toUpperCase();
+            const dob = document.getElementById("dob").value.trim();
+            const spinner = document.getElementById("loading-spinner");
+            const resultDisplay = document.getElementById("result-display");
+
+            const studentIdPattern = /^[A-Za-z]{3}\d{3}$/;
+            
+            if (!studentId || !dob) {
+                showMessage("Please enter both your Student ID and Date of Birth.", true);
+                return;
+            }
+            
+            if (!studentIdPattern.test(studentId)) {
+                showMessage("Please enter a valid Student ID (e.g. BSS001).", true);
+                return;
+            }
+
+            spinner.style.display = "block";
+            resultDisplay.style.display = "none";
+
+            setTimeout(() => {
+                spinner.style.display = "none";
+                const studentData = sampleResults[studentId];
+
+                if (studentData && studentData.dob === dob) {
+                    const { name, form, class: className, results } = studentData;
+
+                    let html = `
+                        <h4 class="text-2xl font-bold mb-4">📊 Student Exam Results</h4>
+                        <div class="result-row"><span class="label">Name:</span> <span>${name}</span></div>
+                        <div class="result-row"><span class="label">ID:</span> <span>${studentId}</span></div>
+                        <div class="result-row"><span class="label">Form:</span> <span>${form}</span></div>
+                        <div class="result-row"><span class="label">Class:</span> <span>${className}</span></div>
+                        <table class="subject-table">
+                            <thead>
+                                <tr><th>Subject</th><th>Grade</th></tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    for (const [subject, grade] of Object.entries(results)) {
+                        const gradeClass = grade.startsWith('A') ? 'grade-a' : grade.startsWith('B') ? 'grade-b' : 'grade-c';
+                        html += `<tr><td>${subject}</td><td class="${gradeClass}">${grade}</td></tr>`;
+                    }
+
+                    html += `</tbody></table>`;
+                    resultDisplay.innerHTML = html;
+                    resultDisplay.style.display = "block";
+                    
+                    showMessage("Results loaded successfully!");
+                } else {
+                    showMessage("No results found or incorrect credentials.", true);
+                }
+            }, 1000);
         }
-      }
-    };
-
-    function checkResults() {
-      const studentId = document.getElementById("student-id").value.trim().toUpperCase();
-      const dob = document.getElementById("dob").value.trim();
-      const spinner = document.getElementById("loading-spinner");
-      const resultDisplay = document.getElementById("result-display");
-
-      const studentIdPattern = /^[A-Za-z]{3}\d{3}$/;
-      if (!studentId || !dob) {
-        alert("Please enter both your Student ID and Date of Birth.");
-        return;
-      }
-      if (!studentIdPattern.test(studentId)) {
-        alert("Please enter a valid Student ID (e.g. BSS001).");
-        return;
-      }
-
-      spinner.style.display = "block";
-      resultDisplay.style.display = "none";
-
-      setTimeout(() => {
-        spinner.style.display = "none";
-        const studentData = sampleResults[studentId];
-
-        if (studentData && studentData.dob === dob) {
-          const { name, form, class: className, results } = studentData;
-
-          let html = `
-            <h4>📄 Student Exam Results</h4>
-            <div class="result-row"><span class="label"> Name:</span> ${name}</div>
-            <div class="result-row"><span class="label"> ID:</span> ${studentId}</div>
-            <div class="result-row"><span class="label"> Form:</span> ${form}</div>
-            <div class="result-row"><span class="label"> Class:</span> ${className}</div>
-            <table class="subject-table">
-              <thead>
-                <tr><th>Subject</th><th>Grade</th></tr>
-              </thead>
-              <tbody>
-          `;
-
-          for (const [subject, grade] of Object.entries(results)) {
-            html += `<tr><td>${subject}</td><td>${grade}</td></tr>`;
-          }
-
-          html += `</tbody></table>`;
-          resultDisplay.innerHTML = html;
-          resultDisplay.style.display = "block";
-        } else {
-          alert("No results found or incorrect credentials.");
-        }
-      }, 1000);
-    }
-  </script>
-</body>
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9918aae055ae4ed4',t:'MTc2MDk2NDkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
