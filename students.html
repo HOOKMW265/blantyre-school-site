@@ -116,6 +116,16 @@
       margin-top: 1rem;
     }
 
+    #result-display {
+      display: none;
+      margin-top: 1rem;
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+    }
+
     @media (max-width: 768px) {
       h2 {
         font-size: 1.6rem;
@@ -166,7 +176,7 @@
       <div id="loading-spinner">Loading...</div>
 
       <!-- Display Result -->
-      <pre id="result-display" style="display:none; margin-top: 1rem;"></pre>
+      <pre id="result-display"></pre>
     </div>
 
     <!-- Student Resources -->
@@ -194,13 +204,41 @@
 
   <!-- JavaScript for result check -->
   <script>
+    const sampleResults = {
+      "BSS001": {
+        dob: "2005-04-12",
+        name: "Thandiwe Banda",
+        form: "Form 2",
+        class: "Center",
+        results: {
+          "Mathematics": "A",
+          "English": "B+",
+          "Biology": "A-",
+          "Chemistry": "B",
+          "History": "A"
+        }
+      },
+      "BSS002": {
+        dob: "2005-06-20",
+        name: "Chikondi Phiri",
+        form: "Form 3",
+        class: "West Wing",
+        results: {
+          "Mathematics": "B",
+          "English": "A",
+          "Physics": "A+",
+          "Geography": "B+",
+          "Chichewa": "A"
+        }
+      }
+    };
+
     function checkResults() {
-      const studentId = document.getElementById("student-id").value.trim();
+      const studentId = document.getElementById("student-id").value.trim().toUpperCase();
       const dob = document.getElementById("dob").value.trim();
       const spinner = document.getElementById("loading-spinner");
       const resultDisplay = document.getElementById("result-display");
 
-      // Simple validation for Student ID format (e.g., BSS001)
       const studentIdPattern = /^[A-Za-z]{3}\d{3}$/;
       if (!studentId || !dob) {
         alert("Please enter both your Student ID and Date of Birth.");
@@ -211,37 +249,35 @@
         return;
       }
 
-      // Show loading spinner
       spinner.style.display = "block";
-      resultDisplay.style.display = "none"; // Hide previous results
+      resultDisplay.style.display = "none";
 
-      // Fetch the results from API
-      fetch("/api/results", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ studentId, dob })
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Hide loading spinner
+      setTimeout(() => {
         spinner.style.display = "none";
+        const studentData = sampleResults[studentId];
 
-        if (data.success) {
+        if (studentData && studentData.dob === dob) {
+          const { name, form, class: className, results } = studentData;
+
+          let resultText = `📄 Student Exam Results\n\n`;
+          resultText += `👤 Name: ${name}\n`;
+          resultText += `🆔 ID: ${studentId}\n`;
+          resultText += `🏫 Form: ${form}\n`;
+          resultText += `🏢 Class: ${className}\n\n`;
+          resultText += `📘 Subjects:\n`;
+
+          for (const [subject, grade] of Object.entries(results)) {
+            resultText += `   - ${subject}: ${grade}\n`;
+          }
+
           resultDisplay.style.display = "block";
-          resultDisplay.innerText = JSON.stringify(data.results, null, 2);
+          resultDisplay.innerText = resultText;
         } else {
           alert("No results found or incorrect credentials.");
         }
-      })
-      .catch(err => {
-        console.error("Error fetching results:", err);
-        spinner.style.display = "none";
-        alert("An error occurred while checking your results.");
-      });
+      }, 1000);
     }
   </script>
-
 </body>
 </html>
+
