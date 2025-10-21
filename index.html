@@ -17,6 +17,7 @@
       font-family: 'Georgia', serif;
     }
 
+    /* Navbar */
     .navbar {
       background-color: #1b4f72;
       display: flex;
@@ -49,8 +50,59 @@
       color: #ffcc00;
     }
 
+    /* Mobile Menu Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: white;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #1b4f72, #2e86de);
+      padding: 100px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-style: italic;
+      color: #ffdd66;
+      margin-top: 10px;
+    }
+
+    .hero a {
+      display: inline-block;
+      background-color: #ffcc00;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      color: #1b4f72;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .hero a:hover {
+      background-color: #ffdd33;
+    }
+
+    /* Top Stories */
     .section {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       padding: 2rem;
       background: white;
@@ -58,28 +110,55 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
+    .section h2 {
+      color: #1b4f72;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
     .news-item {
-      margin-bottom: 2rem;
+      background: #f9fafb;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .news-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .news-item .content {
+      padding: 15px;
+    }
+
+    .news-item .date {
+      font-size: 0.9rem;
+      color: #888;
     }
 
     .news-item h3 {
       color: #1b4f72;
+      margin: 10px 0;
     }
 
     .news-item p {
-      margin: 10px 0;
       color: #555;
+      font-size: 1rem;
     }
 
-    .news-item .date {
-      font-size: 0.95rem;
-      color: #999;
-    }
-
-    .news-item .description {
-      font-size: 1.1rem;
-    }
-
+    /* Footer */
     .footer {
       padding: 40px 20px;
       background-color: #1b4f72;
@@ -92,13 +171,31 @@
       font-size: 0.95rem;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
+      .menu-toggle {
+        display: flex;
       }
-      .news-item img {
-        max-width: 100%;
-        height: auto;
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #1b4f72;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 1rem 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 0.8rem;
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.2);
       }
     }
   </style>
@@ -108,7 +205,12 @@
 <!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">Blantyre Secondary School</div>
-  <div class="nav-links">
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="students.html">Students</a>
@@ -118,18 +220,46 @@
 </div>
 
 <!-- Hero Section -->
-<section style="background: linear-gradient(to right, #1b4f72, #2e86de); padding: 100px 20px; text-align: center; color: white;">
-  <h1 style="font-size: 3.2rem; font-family: 'Georgia', serif;">Welcome to Blantyre Secondary School</h1>
-  <p style="font-size: 1.6rem; font-style: italic; color: #ffdd66; margin-top: 10px;">"Success Comes Through Discipline"</p>
-  <a href="about.html" style="display: inline-block; background-color: #ffcc00; padding: 12px 30px; font-size: 1.2rem; color: #1b4f72; text-decoration: none; border-radius: 5px; margin-top: 20px;">Learn More About Us</a>
+<section class="hero">
+  <h1>Welcome to Blantyre Secondary School</h1>
+  <p>"Success Comes Through Discipline"</p>
+  <a href="about.html">Learn More About Us</a>
 </section>
 
 <!-- Top Stories Section -->
 <section class="section">
-  <h2 style="color:#1b4f72;">📢 Top Stories</h2>
+  <h2>📢 Top Stories</h2>
+  <div class="news-grid">
+    <div class="news-item">
+      <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b" alt="School Event">
+      <div class="content">
+        <p class="date">October 15, 2025</p>
+        <h3>National Science Fair Winners</h3>
+        <p>Our students took home the first prize in the National Science Fair with an innovative solar energy project.</p>
+      </div>
+    </div>
 
+    <div class="news-item">
+      <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0" alt="Sports">
+      <div class="content">
+        <p class="date">September 29, 2025</p>
+        <h3>Inter-Schools Football Tournament</h3>
+        <p>The boys’ football team made it to the finals after a thrilling match against Zomba Secondary School.</p>
+      </div>
+    </div>
 
-  <!-- FOOTER -->
+    <div class="news-item">
+      <img src="https://images.unsplash.com/photo-1533674689012-336d1eeb84d1" alt="Library">
+      <div class="content">
+        <p class="date">August 18, 2025</p>
+        <h3>New Library Opened</h3>
+        <p>A modern library with over 3,000 books and a digital corner was officially opened by the head teacher.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <div class="footer">
   <h3>📍 Visit Us</h3>
   <p>Blantyre Secondary School, Ndirande, Blantyre, Malawi</p>
@@ -137,9 +267,16 @@
   <p>&copy; 2025 Blantyre Secondary School. Designed with care in Malawi 🇲🇼</p>
 </div>
 
+<!-- Script for Mobile Menu -->
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>
-
-
-
 
