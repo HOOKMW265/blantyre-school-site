@@ -1,277 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Results Portal | Blantyre Secondary School</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blantyre Secondary School - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      box-sizing: border-box;
+    body { box-sizing: border-box; scroll-behavior: smooth; }
+
+    .dropdown-content {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+    .dropdown:hover .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
-    .loading-spinner {
-      border: 3px solid #f3f4f6;
-      border-top: 3px solid #3b82f6;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
+    .section-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .section-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .fade-in {
+      animation: fadeIn 0.8s ease-in;
     }
-
-    .result-card {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 12px;
-      padding: 24px;
-      color: white;
-      margin-bottom: 20px;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .subject-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .subject-table th {
-      background: #374151;
-      color: white;
-      padding: 12px;
-      text-align: left;
-      font-weight: 600;
-    }
-
-    .subject-table td {
-      padding: 12px;
-      border-bottom: 1px solid #e5e7eb;
-      color: #374151;
-    }
-
-    .subject-table tr:nth-child(even) {
-      background: #f9fafb;
-    }
-
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .label {
-      font-weight: 600;
-      opacity: 0.9;
-    }
-
-    .grade-a { color: #059669; font-weight: bold; }
-    .grade-b { color: #0891b2; font-weight: bold; }
-    .grade-c { color: #d97706; font-weight: bold; }
   </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
 
-  <!-- NAVBAR -->
-  <nav class="bg-[#1b4f72] text-white sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="text-xl font-bold text-[#ffcc00]">Blantyre Secondary School</div>
-      <div class="hidden md:flex space-x-6">
-        <a href="index.html" class="hover:text-[#ffcc00]">Home</a>
-        <a href="about.html" class="hover:text-[#ffcc00]">About</a>
-        <a href="students.html" class="hover:text-[#ffcc00]">Students</a>
-        <a href="news.html" class="hover:text-[#ffcc00]">News</a>
-        <a href="contact.html" class="hover:text-[#ffcc00]">Contact</a>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 bg-blue-900 shadow-lg z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="text-2xl font-bold text-yellow-400">Blantyre Secondary School</div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#home" class="text-white hover:text-yellow-400">Home</a>
+          <a href="#about" class="text-white hover:text-yellow-400">About</a>
+          <div class="dropdown relative">
+            <a class="text-white hover:text-yellow-400 cursor-pointer">Students ▾</a>
+            <div class="dropdown-content absolute top-full left-0 mt-2 bg-blue-900 rounded-lg shadow-xl min-w-48 py-2">
+              <a href="#clubs" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Clubs</a>
+              <a href="#sports" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Sports</a>
+              <a href="#prefects" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Prefects</a>
+            </div>
+          </div>
+          <a href="#news" class="text-white hover:text-yellow-400">News</a>
+          <a href="#contact" class="text-white hover:text-yellow-400">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-white hover:text-yellow-400">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
-      <button id="menu-btn" class="md:hidden focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden flex-col space-y-2 bg-[#1b4f72] px-4 pb-3 md:hidden">
-      <a href="index.html" class="block hover:text-[#ffcc00]">Home</a>
-      <a href="about.html" class="block hover:text-[#ffcc00]">About</a>
-      <a href="students.html" class="block hover:text-[#ffcc00]">Students</a>
-      <a href="news.html" class="block hover:text-[#ffcc00]">News</a>
-      <a href="contact.html" class="block hover:text-[#ffcc00]">Contact</a>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="#home" class="text-white hover:text-yellow-400 px-4 py-2">Home</a>
+          <a href="#about" class="text-white hover:text-yellow-400 px-4 py-2">About</a>
+          <a href="#students" class="text-white hover:text-yellow-400 px-4 py-2">Students</a>
+          <a href="#news" class="text-white hover:text-yellow-400 px-4 py-2">News</a>
+          <a href="#contact" class="text-white hover:text-yellow-400 px-4 py-2">Contact</a>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
-  <main class="container mx-auto px-4 py-8 max-w-2xl flex-grow">
-    <header class="text-center mb-8">
-      <h1 class="text-4xl font-bold text-gray-800 mb-2">🎓 Student Results Portal</h1>
-      <p class="text-gray-600">Enter your credentials to view your exam results</p>
-    </header>
+  <!-- Hero Section -->
+  <section id="home" class="text-center py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+    <h1 class="text-5xl font-bold mb-4">Welcome to Blantyre Secondary School</h1>
+    <p class="text-lg mb-6 text-blue-100">"Excellence Through Discipline & Innovation"</p>
+    <a href="#about" class="bg-yellow-400 hover:bg-yellow-300 text-blue-900 px-6 py-3 rounded-lg font-semibold transition">Learn More</a>
+  </section>
 
-    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-      <form onsubmit="event.preventDefault(); checkResults();" class="space-y-4">
-        <div>
-          <label for="student-id" class="block text-sm font-medium text-gray-700 mb-2">
-            Student ID
-          </label>
-          <input 
-            type="text" 
-            id="student-id" 
-            placeholder="e.g. BSS001"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-          >
-        </div>
-        
-        <div>
-          <label for="dob" class="block text-sm font-medium text-gray-700 mb-2">
-            Date of Birth
-          </label>
-          <input 
-            type="date" 
-            id="dob"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-          >
-        </div>
-        
-        <button 
-          type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          Check Results
-        </button>
-      </form>
-    </div>
+  <!-- About Section -->
+  <section id="about" class="max-w-5xl mx-auto px-6 py-16">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in">
+      <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
+        <h2 class="text-4xl font-bold mb-4">About Us</h2>
+        <p class="italic text-blue-100">Founded in 1940 • A legacy of learning and leadership</p>
+      </div>
 
-    <div id="loading-spinner" class="text-center py-8" style="display: none;">
-      <div class="loading-spinner"></div>
-      <p class="text-gray-600 mt-4">Loading your results...</p>
-    </div>
-
-    <div id="result-display" class="result-card" style="display: none;">
-      <!-- Results will be shown here -->
-    </div>
-
-    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
-      <h3 class="font-semibold text-blue-800 mb-2">📝 Sample Credentials for Testing:</h3>
-      <div class="text-sm text-blue-700 space-y-1">
-        <p><strong>Student ID:</strong> BSS001 | <strong>DOB:</strong> 2005-04-12</p>
-        <p><strong>Student ID:</strong> BSS002 | <strong>DOB:</strong> 2005-06-20</p>
+      <div class="p-8 space-y-6 text-gray-700">
+        <p>
+          Blantyre Secondary School is one of Malawi's most prestigious educational institutions,
+          known for its commitment to academic excellence, integrity, and student development.
+        </p>
+        <p>
+          We focus on nurturing future leaders through a balance of academics, sports, and creativity.
+        </p>
       </div>
     </div>
-  </main>
+  </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#1b4f72] text-white text-center py-4 mt-auto border-t-2 border-[#ffcc00]">
-    <p class="text-sm opacity-90">&copy; 2025 Blantyre Secondary School — Designed with care in Malawi 🇲🇼</p>
+  <!-- Top Stories / News Section -->
+  <section id="news" class="bg-blue-50 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-blue-900 mb-10">📰 Top Stories & Events</h2>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Story 1 -->
+        <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
+          <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1" alt="Graduation"
+            class="w-full h-48 object-cover" />
+          <div class="p-4 text-left">
+            <p class="text-sm text-gray-500 mb-2">October 15, 2025</p>
+            <h3 class="font-bold text-blue-800 text-lg mb-2">2025 Graduation Ceremony</h3>
+            <p class="text-gray-600 text-sm">A memorable day celebrating our graduating students’ achievements.</p>
+          </div>
+        </div>
+
+        <!-- Story 2 -->
+        <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1" alt="Science Fair"
+            class="w-full h-48 object-cover" />
+          <div class="p-4 text-left">
+            <p class="text-sm text-gray-500 mb-2">September 20, 2025</p>
+            <h3 class="font-bold text-blue-800 text-lg mb-2">Annual Science & Innovation Fair</h3>
+            <p class="text-gray-600 text-sm">Students showcased groundbreaking ideas and tech-driven projects.</p>
+          </div>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
+          <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="Sports Day"
+            class="w-full h-48 object-cover" />
+          <div class="p-4 text-left">
+            <p class="text-sm text-gray-500 mb-2">August 12, 2025</p>
+            <h3 class="font-bold text-blue-800 text-lg mb-2">Inter-school Sports Competition</h3>
+            <p class="text-gray-600 text-sm">Our teams won 5 trophies in various sports categories this year!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-indigo-900 text-white">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-3xl font-bold mb-6 text-yellow-400">Contact Us</h2>
+      <p class="mb-6">Blantyre Secondary School, P.O. Box 123, Blantyre, Malawi</p>
+      <p>Email: <a href="mailto:info@blantyress.mw" class="underline hover:text-yellow-300">info@blantyress.mw</a></p>
+      <p>Phone: +265 999 107 855</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 text-center">
+    <p>&copy; 2025 Blantyre Secondary School. All Rights Reserved.</p>
   </footer>
 
-  <!-- SCRIPT -->
   <script>
-    // Mobile menu toggle
-    document.getElementById("menu-btn").addEventListener("click", () => {
-      document.getElementById("mobile-menu").classList.toggle("hidden");
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
     });
-
-    // Sample student data
-    const sampleResults = {
-      "BSS001": {
-        dob: "2005-04-12",
-        name: "Thandiwe Banda",
-        form: "Form 2",
-        class: "Center",
-        results: {
-          "Mathematics": "A",
-          "English": "B+",
-          "Biology": "A-",
-          "Chemistry": "B",
-          "History": "A"
-        }
-      },
-      "BSS002": {
-        dob: "2005-06-20",
-        name: "Chikondi Phiri",
-        form: "Form 3",
-        class: "West Wing",
-        results: {
-          "Mathematics": "B",
-          "English": "A",
-          "Physics": "A+",
-          "Geography": "B+",
-          "Chichewa": "A"
-        }
-      }
-    };
-
-    // Toast message
-    function showMessage(message, isError = false) {
-      const div = document.createElement('div');
-      div.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
-      div.textContent = message;
-      document.body.appendChild(div);
-      setTimeout(() => div.remove(), 3000);
-    }
-
-    // Check results
-    function checkResults() {
-      const id = document.getElementById("student-id").value.trim().toUpperCase();
-      const dob = document.getElementById("dob").value.trim();
-      const spinner = document.getElementById("loading-spinner");
-      const display = document.getElementById("result-display");
-
-      const idPattern = /^[A-Za-z]{3}\d{3}$/;
-
-      if (!id || !dob) {
-        showMessage("Please enter both your Student ID and Date of Birth.", true);
-        return;
-      }
-
-      if (!idPattern.test(id)) {
-        showMessage("Please enter a valid Student ID (e.g. BSS001).", true);
-        return;
-      }
-
-      spinner.style.display = "block";
-      display.style.display = "none";
-
-      setTimeout(() => {
-        spinner.style.display = "none";
-        const student = sampleResults[id];
-
-        if (student && student.dob === dob) {
-          const { name, form, class: className, results } = student;
-          let html = `
-            <h4 class="text-2xl font-bold mb-4">📊 Student Exam Results</h4>
-            <div class="result-row"><span class="label">Name:</span> <span>${name}</span></div>
-            <div class="result-row"><span class="label">ID:</span> <span>${id}</span></div>
-            <div class="result-row"><span class="label">Form:</span> <span>${form}</span></div>
-            <div class="result-row"><span class="label">Class:</span> <span>${className}</span></div>
-            <table class="subject-table">
-              <thead><tr><th>Subject</th><th>Grade</th></tr></thead>
-              <tbody>
-          `;
-
-          for (const [subject, grade] of Object.entries(results)) {
-            const gradeClass = grade.startsWith('A') ? 'grade-a' : grade.startsWith('B') ? 'grade-b' : 'grade-c';
-            html += `<tr><td>${subject}</td><td class="${gradeClass}">${grade}</td></tr>`;
-          }
-
-          html += `</tbody></table>`;
-          display.innerHTML = html;
-          display.style.display = "block";
-          showMessage("Results loaded successfully!");
-        } else {
-          showMessage("No results found or incorrect credentials.", true);
-        }
-      }, 1000);
-    }
   </script>
 </body>
 </html>
-
