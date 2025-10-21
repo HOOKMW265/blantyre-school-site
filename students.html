@@ -1,246 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Results Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            box-sizing: border-box;
-        }
-        
-        .loading-spinner {
-            border: 3px solid #f3f4f6;
-            border-top: 3px solid #3b82f6;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .result-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            padding: 24px;
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .subject-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .subject-table th {
-            background: #374151;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        .subject-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
-            color: #374151;
-        }
-        
-        .subject-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .subject-table tr:nth-child(even) {
-            background: #f9fafb;
-        }
-        
-        .result-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-        
-        .label {
-            font-weight: 600;
-            opacity: 0.9;
-        }
-        
-        .grade-a { color: #059669; font-weight: bold; }
-        .grade-b { color: #0891b2; font-weight: bold; }
-        .grade-c { color: #d97706; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Results Portal | Blantyre Secondary School</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+
+    .loading-spinner {
+      border: 3px solid #f3f4f6;
+      border-top: 3px solid #3b82f6;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      padding: 24px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .subject-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .subject-table th {
+      background: #374151;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .subject-table td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      color: #374151;
+    }
+
+    .subject-table tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .label {
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .grade-a { color: #059669; font-weight: bold; }
+    .grade-b { color: #0891b2; font-weight: bold; }
+    .grade-c { color: #d97706; font-weight: bold; }
+  </style>
 </head>
-<body class="bg-gray-50 min-h-full">
-    <main class="container mx-auto px-4 py-8 max-w-2xl">
-        <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">🎓 Student Results Portal</h1>
-            <p class="text-gray-600">Enter your credentials to view your exam results</p>
-        </header>
+<body class="bg-gray-50 min-h-screen flex flex-col">
 
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <form onsubmit="event.preventDefault(); checkResults();" class="space-y-4">
-                <div>
-                    <label for="student-id" class="block text-sm font-medium text-gray-700 mb-2">
-                        Student ID
-                    </label>
-                    <input 
-                        type="text" 
-                        id="student-id" 
-                        placeholder="e.g. BSS001"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    >
-                </div>
-                
-                <div>
-                    <label for="dob" class="block text-sm font-medium text-gray-700 mb-2">
-                        Date of Birth
-                    </label>
-                    <input 
-                        type="date" 
-                        id="dob"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    >
-                </div>
-                
-                <button 
-                    type="submit"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                    Check Results
-                </button>
-            </form>
+  <!-- NAVBAR -->
+  <nav class="bg-[#1b4f72] text-white sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-xl font-bold text-[#ffcc00]">Blantyre Secondary School</div>
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-[#ffcc00]">Home</a>
+        <a href="about.html" class="hover:text-[#ffcc00]">About</a>
+        <a href="students.html" class="hover:text-[#ffcc00]">Students</a>
+        <a href="news.html" class="hover:text-[#ffcc00]">News</a>
+        <a href="contact.html" class="hover:text-[#ffcc00]">Contact</a>
+      </div>
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex-col space-y-2 bg-[#1b4f72] px-4 pb-3 md:hidden">
+      <a href="index.html" class="block hover:text-[#ffcc00]">Home</a>
+      <a href="about.html" class="block hover:text-[#ffcc00]">About</a>
+      <a href="students.html" class="block hover:text-[#ffcc00]">Students</a>
+      <a href="news.html" class="block hover:text-[#ffcc00]">News</a>
+      <a href="contact.html" class="block hover:text-[#ffcc00]">Contact</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-8 max-w-2xl flex-grow">
+    <header class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">🎓 Student Results Portal</h1>
+      <p class="text-gray-600">Enter your credentials to view your exam results</p>
+    </header>
+
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+      <form onsubmit="event.preventDefault(); checkResults();" class="space-y-4">
+        <div>
+          <label for="student-id" class="block text-sm font-medium text-gray-700 mb-2">
+            Student ID
+          </label>
+          <input 
+            type="text" 
+            id="student-id" 
+            placeholder="e.g. BSS001"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          >
         </div>
-
-        <div id="loading-spinner" class="text-center py-8" style="display: none;">
-            <div class="loading-spinner"></div>
-            <p class="text-gray-600 mt-4">Loading your results...</p>
+        
+        <div>
+          <label for="dob" class="block text-sm font-medium text-gray-700 mb-2">
+            Date of Birth
+          </label>
+          <input 
+            type="date" 
+            id="dob"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          >
         </div>
+        
+        <button 
+          type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Check Results
+        </button>
+      </form>
+    </div>
 
-        <div id="result-display" class="result-card" style="display: none;">
-            <!-- Results will be populated here -->
-        </div>
+    <div id="loading-spinner" class="text-center py-8" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p class="text-gray-600 mt-4">Loading your results...</p>
+    </div>
 
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
-            <h3 class="font-semibold text-blue-800 mb-2">📝 Sample Credentials for Testing:</h3>
-            <div class="text-sm text-blue-700 space-y-1">
-                <p><strong>Student ID:</strong> BSS001 | <strong>DOB:</strong> 2005-04-12</p>
-                <p><strong>Student ID:</strong> BSS002 | <strong>DOB:</strong> 2005-06-20</p>
-            </div>
-        </div>
-    </main>
+    <div id="result-display" class="result-card" style="display: none;">
+      <!-- Results will be shown here -->
+    </div>
 
-    <script>
-        const sampleResults = {
-            "BSS001": {
-                dob: "2005-04-12",
-                name: "Thandiwe Banda",
-                form: "Form 2",
-                class: "Center",
-                results: {
-                    "Mathematics": "A",
-                    "English": "B+",
-                    "Biology": "A-",
-                    "Chemistry": "B",
-                    "History": "A"
-                }
-            },
-            "BSS002": {
-                dob: "2005-06-20",
-                name: "Chikondi Phiri",
-                form: "Form 3",
-                class: "West Wing",
-                results: {
-                    "Mathematics": "B",
-                    "English": "A",
-                    "Physics": "A+",
-                    "Geography": "B+",
-                    "Chichewa": "A"
-                }
-            }
-        };
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <h3 class="font-semibold text-blue-800 mb-2">📝 Sample Credentials for Testing:</h3>
+      <div class="text-sm text-blue-700 space-y-1">
+        <p><strong>Student ID:</strong> BSS001 | <strong>DOB:</strong> 2005-04-12</p>
+        <p><strong>Student ID:</strong> BSS002 | <strong>DOB:</strong> 2005-06-20</p>
+      </div>
+    </div>
+  </main>
 
-        function showMessage(message, isError = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
-            messageDiv.textContent = message;
-            document.body.appendChild(messageDiv);
-            
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 3000);
+  <!-- FOOTER -->
+  <footer class="bg-[#1b4f72] text-white text-center py-4 mt-auto border-t-2 border-[#ffcc00]">
+    <p class="text-sm opacity-90">&copy; 2025 Blantyre Secondary School — Designed with care in Malawi 🇲🇼</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Mobile menu toggle
+    document.getElementById("menu-btn").addEventListener("click", () => {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+
+    // Sample student data
+    const sampleResults = {
+      "BSS001": {
+        dob: "2005-04-12",
+        name: "Thandiwe Banda",
+        form: "Form 2",
+        class: "Center",
+        results: {
+          "Mathematics": "A",
+          "English": "B+",
+          "Biology": "A-",
+          "Chemistry": "B",
+          "History": "A"
         }
-
-        function checkResults() {
-            const studentId = document.getElementById("student-id").value.trim().toUpperCase();
-            const dob = document.getElementById("dob").value.trim();
-            const spinner = document.getElementById("loading-spinner");
-            const resultDisplay = document.getElementById("result-display");
-
-            const studentIdPattern = /^[A-Za-z]{3}\d{3}$/;
-            
-            if (!studentId || !dob) {
-                showMessage("Please enter both your Student ID and Date of Birth.", true);
-                return;
-            }
-            
-            if (!studentIdPattern.test(studentId)) {
-                showMessage("Please enter a valid Student ID (e.g. BSS001).", true);
-                return;
-            }
-
-            spinner.style.display = "block";
-            resultDisplay.style.display = "none";
-
-            setTimeout(() => {
-                spinner.style.display = "none";
-                const studentData = sampleResults[studentId];
-
-                if (studentData && studentData.dob === dob) {
-                    const { name, form, class: className, results } = studentData;
-
-                    let html = `
-                        <h4 class="text-2xl font-bold mb-4">📊 Student Exam Results</h4>
-                        <div class="result-row"><span class="label">Name:</span> <span>${name}</span></div>
-                        <div class="result-row"><span class="label">ID:</span> <span>${studentId}</span></div>
-                        <div class="result-row"><span class="label">Form:</span> <span>${form}</span></div>
-                        <div class="result-row"><span class="label">Class:</span> <span>${className}</span></div>
-                        <table class="subject-table">
-                            <thead>
-                                <tr><th>Subject</th><th>Grade</th></tr>
-                            </thead>
-                            <tbody>
-                    `;
-
-                    for (const [subject, grade] of Object.entries(results)) {
-                        const gradeClass = grade.startsWith('A') ? 'grade-a' : grade.startsWith('B') ? 'grade-b' : 'grade-c';
-                        html += `<tr><td>${subject}</td><td class="${gradeClass}">${grade}</td></tr>`;
-                    }
-
-                    html += `</tbody></table>`;
-                    resultDisplay.innerHTML = html;
-                    resultDisplay.style.display = "block";
-                    
-                    showMessage("Results loaded successfully!");
-                } else {
-                    showMessage("No results found or incorrect credentials.", true);
-                }
-            }, 1000);
+      },
+      "BSS002": {
+        dob: "2005-06-20",
+        name: "Chikondi Phiri",
+        form: "Form 3",
+        class: "West Wing",
+        results: {
+          "Mathematics": "B",
+          "English": "A",
+          "Physics": "A+",
+          "Geography": "B+",
+          "Chichewa": "A"
         }
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9918aae055ae4ed4',t:'MTc2MDk2NDkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+      }
+    };
+
+    // Toast message
+    function showMessage(message, isError = false) {
+      const div = document.createElement('div');
+      div.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
+      div.textContent = message;
+      document.body.appendChild(div);
+      setTimeout(() => div.remove(), 3000);
+    }
+
+    // Check results
+    function checkResults() {
+      const id = document.getElementById("student-id").value.trim().toUpperCase();
+      const dob = document.getElementById("dob").value.trim();
+      const spinner = document.getElementById("loading-spinner");
+      const display = document.getElementById("result-display");
+
+      const idPattern = /^[A-Za-z]{3}\d{3}$/;
+
+      if (!id || !dob) {
+        showMessage("Please enter both your Student ID and Date of Birth.", true);
+        return;
+      }
+
+      if (!idPattern.test(id)) {
+        showMessage("Please enter a valid Student ID (e.g. BSS001).", true);
+        return;
+      }
+
+      spinner.style.display = "block";
+      display.style.display = "none";
+
+      setTimeout(() => {
+        spinner.style.display = "none";
+        const student = sampleResults[id];
+
+        if (student && student.dob === dob) {
+          const { name, form, class: className, results } = student;
+          let html = `
+            <h4 class="text-2xl font-bold mb-4">📊 Student Exam Results</h4>
+            <div class="result-row"><span class="label">Name:</span> <span>${name}</span></div>
+            <div class="result-row"><span class="label">ID:</span> <span>${id}</span></div>
+            <div class="result-row"><span class="label">Form:</span> <span>${form}</span></div>
+            <div class="result-row"><span class="label">Class:</span> <span>${className}</span></div>
+            <table class="subject-table">
+              <thead><tr><th>Subject</th><th>Grade</th></tr></thead>
+              <tbody>
+          `;
+
+          for (const [subject, grade] of Object.entries(results)) {
+            const gradeClass = grade.startsWith('A') ? 'grade-a' : grade.startsWith('B') ? 'grade-b' : 'grade-c';
+            html += `<tr><td>${subject}</td><td class="${gradeClass}">${grade}</td></tr>`;
+          }
+
+          html += `</tbody></table>`;
+          display.innerHTML = html;
+          display.style.display = "block";
+          showMessage("Results loaded successfully!");
+        } else {
+          showMessage("No results found or incorrect credentials.", true);
+        }
+      }, 1000);
+    }
+  </script>
+</body>
 </html>
-
-
 
