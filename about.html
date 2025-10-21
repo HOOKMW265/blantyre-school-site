@@ -1,271 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - Blantyre Secondary School</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Blantyre Secondary School</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      box-sizing: border-box;
-    }
-    
-    .dropdown-content {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-    }
-    
-    .dropdown:hover .dropdown-content {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .section-card {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .section-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.6s ease-in;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .nav-active { display: block; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-full">
+<body class="bg-gray-50 text-gray-800">
 
-  <!-- Navigation -->
-  <nav class="sticky top-0 bg-blue-900 shadow-lg z-50">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center py-4">
-        <div class="text-2xl font-bold text-yellow-400">
-          Blantyre Secondary School
-        </div>
-        <div class="hidden md:flex space-x-8">
-          <a href="#home" class="text-white hover:text-yellow-400 transition-colors duration-200 font-medium">Home</a>
-          <a href="#about" class="text-white hover:text-yellow-400 transition-colors duration-200 font-medium">About</a>
-          <div class="dropdown relative">
-            <a href="#students" class="text-white hover:text-yellow-400 transition-colors duration-200 font-medium cursor-pointer">
-              Students ▾
-            </a>
-            <div class="dropdown-content absolute top-full left-0 mt-2 bg-blue-900 rounded-lg shadow-xl min-w-48 py-2">
-              <a href="#clubs" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400 transition-colors duration-200">Clubs</a>
-              <a href="#sports" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400 transition-colors duration-200">Sports</a>
-              <a href="#prefects" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400 transition-colors duration-200">Prefects</a>
-            </div>
-          </div>
-          <a href="#news" class="text-white hover:text-yellow-400 transition-colors duration-200 font-medium">News</a>
-          <a href="#contact" class="text-white hover:text-yellow-400 transition-colors duration-200 font-medium">Contact</a>
-        </div>
-        
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden text-white hover:text-yellow-400">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+  <!-- Navbar -->
+  <header class="bg-blue-900 text-white fixed w-full top-0 left-0 z-50 shadow-lg">
+    <nav class="max-w-6xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-yellow-400">Blantyre Secondary School</h1>
+      <button id="menu-btn" class="md:hidden text-white focus:outline-none">☰</button>
+      <ul id="menu" class="hidden md:flex space-x-6">
+        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="about.html" class="hover:text-yellow-400 text-yellow-400 font-semibold">About</a></li>
+        <li><a href="students.html" class="hover:text-yellow-400">Students</a></li>
+        <li><a href="news.html" class="hover:text-yellow-400">News</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-400">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile dropdown -->
+    <ul id="dropdown" class="hidden bg-blue-800 text-white absolute right-4 mt-2 rounded-lg shadow-lg md:hidden w-48">
+      <li><a href="index.html" class="block px-4 py-2 hover:bg-blue-700">Home</a></li>
+      <li><a href="about.html" class="block px-4 py-2 hover:bg-blue-700">About</a></li>
+      <li><a href="students.html" class="block px-4 py-2 hover:bg-blue-700">Students</a></li>
+      <li><a href="news.html" class="block px-4 py-2 hover:bg-blue-700">News</a></li>
+      <li><a href="contact.html" class="block px-4 py-2 hover:bg-blue-700">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-24 bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-20">
+    <h2 class="text-4xl font-bold mb-4">About Blantyre Secondary School</h2>
+    <p class="text-lg italic text-yellow-300">"Where Excellence Meets Discipline"</p>
+  </section>
+
+  <!-- About Content -->
+  <section class="max-w-5xl mx-auto py-16 px-6">
+    <div class="text-center mb-12">
+      <h3 class="text-3xl font-bold text-blue-900 mb-4">Our Mission & Vision</h3>
+      <p class="text-gray-700 max-w-2xl mx-auto">
+        At Blantyre Secondary School, our mission is to nurture young minds into responsible,
+        knowledgeable, and disciplined citizens. We strive to provide a balanced education that
+        promotes academic excellence, creativity, and moral integrity.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <div>
+        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80"
+             alt="Students Learning" class="rounded-xl shadow-lg w-full h-80 object-cover">
       </div>
-      
-      <!-- Mobile Menu -->
-      <div id="mobileMenu" class="md:hidden hidden pb-4">
-        <div class="flex flex-col space-y-2">
-          <a href="#home" class="text-white hover:text-yellow-400 py-2 px-4 rounded transition-colors duration-200">Home</a>
-          <a href="#about" class="text-white hover:text-yellow-400 py-2 px-4 rounded transition-colors duration-200">About</a>
-          <a href="#students" class="text-white hover:text-yellow-400 py-2 px-4 rounded transition-colors duration-200">Students</a>
-          <a href="#clubs" class="text-white hover:text-yellow-400 py-2 px-4 pl-8 rounded transition-colors duration-200">Clubs</a>
-          <a href="#sports" class="text-white hover:text-yellow-400 py-2 px-4 pl-8 rounded transition-colors duration-200">Sports</a>
-          <a href="#prefects" class="text-white hover:text-yellow-400 py-2 px-4 pl-8 rounded transition-colors duration-200">Prefects</a>
-          <a href="#news" class="text-white hover:text-yellow-400 py-2 px-4 rounded transition-colors duration-200">News</a>
-          <a href="#contact" class="text-white hover:text-yellow-400 py-2 px-4 rounded transition-colors duration-200">Contact</a>
+
+      <div class="flex flex-col justify-center">
+        <h4 class="text-2xl font-semibold text-blue-800 mb-4">A Legacy of Excellence</h4>
+        <p class="text-gray-700 mb-4">
+          Established in 1972, Blantyre Secondary School has stood as a beacon of educational
+          achievement in Malawi. Our dedicated teachers and modern facilities create an environment
+          that fosters innovation, teamwork, and leadership.
+        </p>
+        <p class="text-gray-700">
+          We take pride in our diverse student body and our long-standing record of success in
+          academics, sports, and community service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="bg-blue-50 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-blue-900 mb-10">Our Core Values</h3>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold text-blue-800 mb-3">Discipline</h4>
+          <p class="text-gray-600">We believe discipline is the foundation of excellence and integrity in all pursuits.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold text-blue-800 mb-3">Integrity</h4>
+          <p class="text-gray-600">Our students learn to act with honesty, fairness, and respect in all situations.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold text-blue-800 mb-3">Excellence</h4>
+          <p class="text-gray-600">We encourage academic and personal excellence in every student we teach.</p>
         </div>
       </div>
     </div>
-  </nav>
-
-  <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in">
-      <!-- Header Section -->
-      <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
-        <h1 class="text-4xl font-bold mb-4">About Blantyre Secondary School</h1>
-        <p class="text-xl italic text-blue-100">"Success comes through discipline."</p>
-      </div>
-
-      <!-- Content Sections -->
-      <div class="p-8 space-y-8">
-        
-        <!-- Who We Are -->
-        <div class="section-card bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-l-4 border-blue-500">
-          <div class="flex items-center mb-4">
-            <span class="text-3xl mr-3">📘</span>
-            <h2 class="text-2xl font-bold text-blue-800">Who We Are</h2>
-          </div>
-          <p class="text-gray-700 leading-relaxed">
-            Founded in 1940, <strong>Blantyre Secondary School</strong> is one of Malawi's most respected academic institutions. Situated in the heart of Blantyre City, we are committed to academic excellence, student growth, and leadership development.
-          </p>
-        </div>
-
-        <!-- What We Do -->
-        <div class="section-card bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border-l-4 border-green-500">
-          <div class="flex items-center mb-4">
-            <span class="text-3xl mr-3">💼</span>
-            <h2 class="text-2xl font-bold text-green-800">What We Do</h2>
-          </div>
-          <p class="text-gray-700 leading-relaxed">
-            We provide a comprehensive secondary education program that emphasizes discipline, innovation, and character development. Our curriculum balances academic achievement with leadership, responsibility, and life skills.
-          </p>
-        </div>
-
-        <!-- Our Mission -->
-        <div class="section-card bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-6 border-l-4 border-purple-500">
-          <div class="flex items-center mb-4">
-            <span class="text-3xl mr-3">🎯</span>
-            <h2 class="text-2xl font-bold text-purple-800">Our Mission</h2>
-          </div>
-          <p class="text-gray-700 leading-relaxed">
-            To provide quality education through discipline, hard work, and innovation, nurturing students to become productive members of society.
-          </p>
-        </div>
-
-        <!-- Our Vision -->
-        <div class="section-card bg-gradient-to-r from-yellow-50 to-amber-50 rounded-xl p-6 border-l-4 border-yellow-500">
-          <div class="flex items-center mb-4">
-            <span class="text-3xl mr-3">🌟</span>
-            <h2 class="text-2xl font-bold text-yellow-800">Our Vision</h2>
-          </div>
-          <p class="text-gray-700 leading-relaxed">
-            To be a center of academic excellence and moral integrity that produces future leaders and innovators.
-          </p>
-        </div>
-
-        <!-- Core Values -->
-        <div class="section-card bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-6 border-l-4 border-red-500">
-          <div class="flex items-center mb-4">
-            <span class="text-3xl mr-3">⭐</span>
-            <h2 class="text-2xl font-bold text-red-800">Our Core Values</h2>
-          </div>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-              <h3 class="font-semibold text-gray-800 mb-2">🎓 Academic Excellence</h3>
-              <p class="text-gray-600 text-sm">Striving for the highest standards in education and learning.</p>
-            </div>
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-              <h3 class="font-semibold text-gray-800 mb-2">🤝 Integrity</h3>
-              <p class="text-gray-600 text-sm">Building character through honesty and moral principles.</p>
-            </div>
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-              <h3 class="font-semibold text-gray-800 mb-2">💪 Discipline</h3>
-              <p class="text-gray-600 text-sm">Fostering self-control and responsible behavior.</p>
-            </div>
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-              <h3 class="font-semibold text-gray-800 mb-2">🚀 Innovation</h3>
-              <p class="text-gray-600 text-sm">Embracing creativity and forward-thinking approaches.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quick Stats -->
-        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white">
-          <h2 class="text-2xl font-bold mb-6 text-center">School at a Glance</h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="bg-white bg-opacity-20 rounded-lg p-4">
-              <div class="text-2xl font-bold">84</div>
-              <div class="text-sm opacity-90">Years of Excellence</div>
-            </div>
-            <div class="bg-white bg-opacity-20 rounded-lg p-4">
-              <div class="text-2xl font-bold">1200+</div>
-              <div class="text-sm opacity-90">Students</div>
-            </div>
-            <div class="bg-white bg-opacity-20 rounded-lg p-4">
-              <div class="text-2xl font-bold">60+</div>
-              <div class="text-sm opacity-90">Teachers</div>
-            </div>
-            <div class="bg-white bg-opacity-20 rounded-lg p-4">
-              <div class="text-2xl font-bold">15+</div>
-              <div class="text-sm opacity-90">Clubs & Societies</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </main>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8 mt-12">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <div class="mb-4">
-        <h3 class="text-xl font-bold text-yellow-400 mb-2">Blantyre Secondary School</h3>
-        <p class="text-gray-300">Excellence through Discipline • Innovation through Education</p>
-      </div>
-      <div class="border-t border-gray-600 pt-4">
-        <p class="text-gray-400">&copy; 2024 Blantyre Secondary School. All rights reserved.</p>
-      </div>
-    </div>
+  <footer class="bg-blue-900 text-white py-6 text-center">
+    <p class="text-sm">&copy; 2025 Blantyre Secondary School. All Rights Reserved.</p>
   </footer>
 
   <script>
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    mobileMenuBtn.addEventListener('click', function() {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-        // Close mobile menu if open
-        mobileMenu.classList.add('hidden');
-      });
-    });
-
-    // Add scroll effect to sections
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe all section cards
-    document.querySelectorAll('.section-card').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(card);
+    const menuBtn = document.getElementById('menu-btn');
+    const dropdown = document.getElementById('dropdown');
+    menuBtn.addEventListener('click', () => {
+      dropdown.classList.toggle('hidden');
     });
   </script>
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99212fde95429863',t:'MTc2MTA1NDIzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
-
 
 
 
