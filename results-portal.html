@@ -4,118 +4,140 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Examination Results Portal</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      background-color: #ffffff;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 20px 0;
       text-align: center;
     }
-    main {
-      flex: 1;
-      max-width: 600px;
+
+    .container {
+      width: 90%;
+      max-width: 400px;
       margin: 40px auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      background-color: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 5px;
     }
+
+    .container img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
     h2 {
-      text-align: center;
-      color: #004080;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    label {
+      margin: 5px 0;
+      font-size: 20px;
+      color: #222;
       font-weight: bold;
     }
+
+    .subtitle {
+      color: #004d00;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
     input[type="text"],
     input[type="date"] {
-      padding: 10px;
-      border: 1px solid #ccc;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #bbb;
       border-radius: 4px;
       font-size: 16px;
+      margin-top: 6px;
     }
+
     button {
-      background-color: #004080;
-      color: white;
+      width: 100%;
       padding: 12px;
+      background-color: #0f7a41;
+      color: white;
+      font-size: 16px;
       border: none;
       border-radius: 4px;
+      margin-top: 20px;
       cursor: pointer;
-      font-size: 16px;
     }
+
     button:hover {
-      background-color: #003366;
+      background-color: #0d6a38;
     }
+
+    /* Results Box */
     .results {
-      margin-top: 30px;
       display: none;
+      margin-top: 25px;
     }
+
     .results table {
       width: 100%;
       border-collapse: collapse;
     }
+
     .results th, .results td {
-      border: 1px solid #ccc;
       padding: 10px;
+      border: 1px solid #ccc;
       text-align: center;
     }
+
     .results th {
-      background-color: #004080;
+      background-color: #0f7a41;
       color: white;
     }
+
     .student-info {
-      margin-bottom: 20px;
       font-weight: bold;
-      text-align: center;
-      color: #004080;
+      margin-bottom: 15px;
+      color: #0f7a41;
     }
+
     footer {
-      background-color: #004080;
-      color: white;
-      text-align: center;
-      padding: 12px 0;
-      margin-top: 20px;
+      margin-top: 40px;
+      padding: 15px 0;
+      color: #777;
       font-size: 14px;
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Blantyre Secondary School Results Portal</h1>
-  </header>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Coat_of_arms_of_Malawi.svg">
 
-  <main>
+    <h2>Blantyre Secondary School</h2>
+    <h2>Examination Results Portal</h2>
 
-    <h2>Check Your Exam Results</h2>
+    <div class="subtitle">*Enter exam number and date of birth to check results*</div>
 
+    <!-- FORM -->
     <form id="resultForm">
-      <label>ID Number</label>
-      <input type="text" id="IDNumber" required>
+      <label>Examination number</label>
+      <input type="text" id="IDNumber" placeholder="No spaces" required>
 
-      <label>Date of Birth</label>
+      <label>Date of birth</label>
       <input type="date" id="dob" required>
 
-      <button type="submit">Check Results</button>
+      <button type="submit">Search Results</button>
     </form>
 
+    <!-- RESULTS -->
     <div class="results" id="resultsDiv">
       <div class="student-info" id="studentInfo"></div>
+
       <table>
         <thead>
           <tr>
@@ -126,23 +148,20 @@
         <tbody id="resultsTable"></tbody>
       </table>
     </div>
+  </div>
 
-  </main>
-
-  <footer>
-    © 2025 - BSS
-  </footer>
+  <footer>© 2025 - BSS</footer>
 
   <script>
-    const form = document.getElementById('resultForm');
-    const resultsDiv = document.getElementById('resultsDiv');
-    const resultsTable = document.getElementById('resultsTable');
-    const studentInfo = document.getElementById('studentInfo');
+    const form = document.getElementById("resultForm");
+    const resultsDiv = document.getElementById("resultsDiv");
+    const resultsTable = document.getElementById("resultsTable");
+    const studentInfo = document.getElementById("studentInfo");
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      // Hide the form
+      // Hide form
       form.style.display = "none";
 
       // Sample data
@@ -160,21 +179,17 @@
         { subject: "Business Studies", grade: "A" }
       ];
 
-      // Show student info
-      studentInfo.textContent = `${studentName} - ID: ${studentID}`;
+      studentInfo.textContent = `${studentName} — ID: ${studentID}`;
 
-      // Add results
       resultsTable.innerHTML = "";
-      exampleResults.forEach(res => {
+      exampleResults.forEach(r => {
         resultsTable.innerHTML += `
           <tr>
-            <td>${res.subject}</td>
-            <td>${res.grade}</td>
-          </tr>
-        `;
+            <td>${r.subject}</td>
+            <td>${r.grade}</td>
+          </tr>`;
       });
 
-      // Show results
       resultsDiv.style.display = "block";
     });
   </script>
