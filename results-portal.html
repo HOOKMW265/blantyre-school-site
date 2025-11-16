@@ -10,6 +10,9 @@
       background-color: #f2f2f2;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
       background-color: #004080;
@@ -18,6 +21,7 @@
       text-align: center;
     }
     main {
+      flex: 1;
       max-width: 600px;
       margin: 40px auto;
       background-color: white;
@@ -39,7 +43,7 @@
       font-weight: bold;
     }
     input[type="text"],
-    input[type="number"] {
+    input[type="date"] {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -80,20 +84,32 @@
       text-align: center;
       color: #004080;
     }
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 12px 0;
+      margin-top: 20px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Blantyre secondary school Results Portal</h1>
-  </header>
-  <main>
-    <h2>Check Your Exam Results</h2>
-    <form id="resultForm">
-      <label for="indexNumber">ID Number</label>
-      <input type="text" id="IDNumber" name="IDNumber" required>
 
-      <label for="year">Year</label>
-      <input type="number" id="year" name="year" required>
+  <header>
+    <h1>Blantyre Secondary School Results Portal</h1>
+  </header>
+
+  <main>
+
+    <h2>Check Your Exam Results</h2>
+
+    <form id="resultForm">
+      <label>ID Number</label>
+      <input type="text" id="IDNumber" required>
+
+      <label>Date of Birth</label>
+      <input type="date" id="dob" required>
 
       <button type="submit">Check Results</button>
     </form>
@@ -107,12 +123,15 @@
             <th>Grade</th>
           </tr>
         </thead>
-        <tbody id="resultsTable">
-          <!-- Results will appear here -->
-        </tbody>
+        <tbody id="resultsTable"></tbody>
       </table>
     </div>
+
   </main>
+
+  <footer>
+    © 2025 - BSS
+  </footer>
 
   <script>
     const form = document.getElementById('resultForm');
@@ -123,9 +142,13 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Sample result for Justice Kakonkhwe
+      // Hide the form
+      form.style.display = "none";
+
+      // Sample data
       const studentName = "Justice Kakonkhwe";
       const studentID = "BSS1964";
+
       const exampleResults = [
         { subject: "Mathematics", grade: "A" },
         { subject: "English", grade: "A" },
@@ -137,29 +160,24 @@
         { subject: "Business Studies", grade: "A" }
       ];
 
-      // Display student info
+      // Show student info
       studentInfo.textContent = `${studentName} - ID: ${studentID}`;
 
-      // Clear old results
+      // Add results
       resultsTable.innerHTML = "";
-
-      // Populate table with grades
       exampleResults.forEach(res => {
-        const row = document.createElement('tr');
-        const subjectCell = document.createElement('td');
-        const gradeCell = document.createElement('td');
-
-        subjectCell.textContent = res.subject;
-        gradeCell.textContent = res.grade;
-
-        row.appendChild(subjectCell);
-        row.appendChild(gradeCell);
-        resultsTable.appendChild(row);
+        resultsTable.innerHTML += `
+          <tr>
+            <td>${res.subject}</td>
+            <td>${res.grade}</td>
+          </tr>
+        `;
       });
 
+      // Show results
       resultsDiv.style.display = "block";
     });
   </script>
+
 </body>
 </html>
-￼Enter
