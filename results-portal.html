@@ -127,9 +127,16 @@
     <form id="resultForm">
       <label>Examination number</label>
       <input type="text" id="IDNumber" placeholder="No spaces" required>
+      <label for="dob">Date of Birth</label>
+      <input 
+        type="text" 
+        id="dob" 
+        name="dob"
+        placeholder="YYYY-MM-DD"
+         pattern="\d{4}-\d{2}-\d{2}"
+       required
+       >
 
-      <label>Date of birth</label>
-      <input type="date" id="dob" required>
 
       <button type="submit">Search Results</button>
     </form>
