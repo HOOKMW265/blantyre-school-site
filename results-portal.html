@@ -24,9 +24,12 @@
       border-radius: 5px;
     }
 
-    .container img {
+    /* Logo */
+    .logo {
       width: 120px;
+      height: auto;
       margin-bottom: 10px;
+      display: inline-block;
     }
 
     h2 {
@@ -110,13 +113,21 @@
       color: #777;
       font-size: 14px;
     }
+
+    /* Small screens: slightly reduce logo */
+    @media (max-width: 360px) {
+      .logo {
+        width: 90px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
   <div class="container">
-    <img src="">
+    <!-- Put your crest/logo at assets/bss-crest.png or assets/bss-crest.svg -->
+    <img src="assets/bss-crest.png" alt="Blantyre Secondary School crest" class="logo">
 
     <h2>Blantyre Secondary School</h2>
     <h2>Examination Results Portal</h2>
