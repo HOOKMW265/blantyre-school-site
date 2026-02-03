@@ -24,12 +24,9 @@
       border-radius: 5px;
     }
 
-    /* Logo */
     .logo {
       width: 120px;
-      height: auto;
       margin-bottom: 10px;
-      display: inline-block;
     }
 
     h2 {
@@ -53,8 +50,7 @@
       font-size: 14px;
     }
 
-    input[type="text"],
-    input[type="date"] {
+    input {
       width: 100%;
       padding: 12px;
       border: 1px solid #bbb;
@@ -79,32 +75,23 @@
       background-color: #0d6a38;
     }
 
-    /* Results Box */
     .results {
       display: none;
       margin-top: 25px;
     }
 
-    .results table {
+    iframe {
       width: 100%;
-      border-collapse: collapse;
-    }
-
-    .results th, .results td {
-      padding: 10px;
+      height: 500px;
       border: 1px solid #ccc;
-      text-align: center;
-    }
-
-    .results th {
-      background-color: #0f7a41;
-      color: white;
+      border-radius: 4px;
+      margin-top: 15px;
     }
 
     .student-info {
       font-weight: bold;
-      margin-bottom: 15px;
       color: #0f7a41;
+      margin-bottom: 10px;
     }
 
     footer {
@@ -113,101 +100,73 @@
       color: #777;
       font-size: 14px;
     }
-
-    /* Small screens: slightly reduce logo */
-    @media (max-width: 360px) {
-      .logo {
-        width: 90px;
-      }
-    }
   </style>
 </head>
 
 <body>
 
   <div class="container">
-    <!-- Put your crest/logo at assets/bss-crest.png or assets/bss-crest.svg -->
-    <img src="assets/bss-crest.png" alt="Blantyre Secondary School crest" class="logo">
+    <img src="assets/bss-crest.png" alt="School Crest" class="logo">
 
     <h2>Blantyre Secondary School</h2>
     <h2>Examination Results Portal</h2>
 
-    <div class="subtitle">*Enter exam number and date of birth to check results*</div>
+    <div class="subtitle">
+      *Enter exam number and date of birth to view report*
+    </div>
 
     <!-- FORM -->
     <form id="resultForm">
-      <label>Examination number</label>
-      <input type="text" id="IDNumber" placeholder="No spaces" required>
-      <label for="dob">Date of Birth</label>
-      <input 
-        type="text" 
-        id="dob" 
-        name="dob"
-        placeholder="DD-MM-YYYY"
-         pattern="\d{4}-\d{2}-\d{2}"
-       required
-       >
+      <label>Examination Number</label>
+      <input type="text" id="examNo" required placeholder="e.g. BSS1964">
 
+      <label>Date of Birth</label>
+      <input type="text" id="dob" required placeholder="YYYY-MM-DD">
 
-      <button type="submit">Search Results</button>
+      <button type="submit">View Report</button>
     </form>
 
     <!-- RESULTS -->
     <div class="results" id="resultsDiv">
       <div class="student-info" id="studentInfo"></div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Subject</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody id="resultsTable"></tbody>
-      </table>
+      <iframe id="reportFrame"></iframe>
     </div>
   </div>
 
-  <footer>© 2025 - BSS</footer>
+  <footer>© 2025 – BSS</footer>
 
   <script>
     const form = document.getElementById("resultForm");
     const resultsDiv = document.getElementById("resultsDiv");
-    const resultsTable = document.getElementById("resultsTable");
     const studentInfo = document.getElementById("studentInfo");
+    const reportFrame = document.getElementById("reportFrame");
 
-    form.addEventListener("submit", function(e) {
+    /* =========================
+       https://drive.google.com/drive/folders/1w6Qa7Uyyx3TQBbl0WaDZS6G2WjOeKrUo?usp=sharing
+       ========================= */
+
+    const reports = {
+      "BSS1964_2009-05-15": "https://drive.google.com/file/d/1zsU3gr2DBPdJNqyjtgoBi6I6flSdkPLJ/view?usp=sharing",
+      "BSS1023_2007-01-21": "https://drive.google.com/file/d/PUT_FILE_ID_HERE/preview"
+    };
+
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Hide form
+      const examNo = document.getElementById("examNo").value.trim();
+      const dob = document.getElementById("dob").value.trim();
+
+      const key = examNo + "_" + dob;
+
+      if (!reports[key]) {
+        alert("No report found for entered details.");
+        return;
+      }
+
+      studentInfo.textContent = "Report for " + examNo;
+      reportFrame.src = reports[key];
+
       form.style.display = "none";
-
-      // Sample data
-      const studentName = "Justice Kakonkhwe";
-      const studentID = "BSS1964";
-
-      const exampleResults = [
-        { subject: "Mathematics", grade: "A" },
-        { subject: "English", grade: "A" },
-        { subject: "Biology", grade: "A" },
-        { subject: "Chemistry", grade: "A" },
-        { subject: "Physics", grade: "A" },
-        { subject: "Chichewa", grade: "A" },
-        { subject: "Agriculture", grade: "A" },
-        { subject: "Business Studies", grade: "A" }
-      ];
-
-      studentInfo.textContent = `${studentName} — ID: ${studentID}`;
-
-      resultsTable.innerHTML = "";
-      exampleResults.forEach(r => {
-        resultsTable.innerHTML += `
-          <tr>
-            <td>${r.subject}</td>
-            <td>${r.grade}</td>
-          </tr>`;
-      });
-
       resultsDiv.style.display = "block";
     });
   </script>
