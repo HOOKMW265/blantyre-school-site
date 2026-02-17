@@ -34,7 +34,7 @@
     }
 
     h2 {
-      margin: 4px 0;
+      margin: 2px 0;
       font-size: 20px;
       text-align: center;
       color: #222;
@@ -45,7 +45,7 @@
       color: #0f7a41;
       font-style: italic;
       font-size: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
     label {
@@ -103,7 +103,7 @@
 
     .iframe-wrapper {
       width: 100%;
-      height: 70vh; /* responsive height */
+      height: 70vh;
       border: 1px solid #ccc;
       border-radius: 6px;
       overflow: hidden;
@@ -123,7 +123,6 @@
       font-size: 13px;
     }
 
-    /* Desktop improvement */
     @media (min-width: 900px) {
       .container {
         max-width: 600px;
@@ -135,19 +134,21 @@
 <body>
 
   <div class="container">
-    <img src="<>
-      
+
+    <!-- Add your real logo file name below -->
+    <img src="logo.png" class="logo" alt="School Logo">
+
     <h2>Blantyre Secondary School</h2>
     <h2>Examination Results Portal</h2>
-   
+    <div class="subtitle">Success Comes Through Discipline </div>
 
     <!-- FORM -->
     <form id="resultForm">
       <label>Examination Number</label>
-      <input type="text" id="examNo" required placeholder="e.g. BSS1964">
+      <input type="text" id="examNo" required placeholder="">
 
       <label>Date of Birth</label>
-      <input type="text" id="dob" required placeholder="YYYY-MM-DD">
+      <input type="date" id="dob" required>
 
       <button type="submit">View Report</button>
     </form>
@@ -171,7 +172,7 @@
     const reportFrame = document.getElementById("reportFrame");
 
     const reports = {
-      "BSS1964_2009-05-15": "https://drive.google.com/file/d/1np5a7khDA85u3LgD7Nusxyry39B4t6-Q/preview?usp=sharing",
+      "BSS1964_2009-05-15": "https://drive.google.com/file/d/1np5a7khDA85u3LgD7Nusxyry39B4t6-Q/preview",
       "BSS1023_2007-01-21": "https://drive.google.com/file/d/FILE_ID/preview"
     };
 
@@ -179,7 +180,7 @@
       e.preventDefault();
 
       const examNo = document.getElementById("examNo").value.trim().toUpperCase();
-      const dob = document.getElementById("dob").value.trim();
+      const dob = document.getElementById("dob").value;
 
       const key = examNo + "_" + dob;
 
