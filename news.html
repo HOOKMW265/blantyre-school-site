@@ -1,147 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>School News - Blantyre Secondary School</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | Blantyre Secondary School</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      background: #f4f6f8;
-      color: #333;
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; }
+
+    .news-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    h1, h2, h3 {
-      font-family: 'Georgia', serif;
-    }
-
-    .navbar {
-      background-color: #1b4f72;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .navbar .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #ffcc00;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      color: #ffcc00;
-    }
-
-    .section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .news-item {
-      margin-bottom: 2rem;
-    }
-
-    .news-item img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      display: block;
-      margin: 20px 0;
-    }
-
-    .footer {
-      padding: 40px 20px;
-      background-color: #1b4f72;
-      color: white;
-      text-align: center;
-    }
-
-    .footer p {
-      margin-top: 15px;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-      }
-      .news-item img {
-        max-width: 100%;
-        height: auto;
-      }
+    .news-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     }
   </style>
 </head>
-<body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">Blantyre Secondary School</div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="students.html">Students</a>
-    <a href="news.html">News</a>
-    <a href="contact.html">Contact</a>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+
+<!-- NAVIGATION -->
+<nav class="sticky top-0 bg-blue-900 shadow-lg z-50 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex justify-between items-center py-4">
+
+      <!-- Logo -->
+      <a href="index.html" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition">
+        Blantyre Secondary School
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="index.html" class="text-white hover:text-yellow-400">Home</a>
+        <a href="about.html" class="text-white hover:text-yellow-400">About</a>
+        <a href="clubs.html" class="text-white hover:text-yellow-400">Clubs</a>
+        <a href="sports.html" class="text-white hover:text-yellow-400">Sports</a>
+        <a href="prefects.html" class="text-white hover:text-yellow-400">Prefects</a>
+        <a href="news.html" class="text-yellow-400 font-semibold">News</a>
+        <a href="contact.html" class="text-white hover:text-yellow-400">Contact</a>
+        <a href="results-portal.html"
+           class="bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition">
+          Results Portal
+        </a>
+      </div>
+
+      <!-- Mobile Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+        ☰
+      </button>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+         class="md:hidden hidden absolute right-6 top-full bg-blue-900 rounded-lg shadow-lg p-4 space-y-2 w-56 transition-all duration-300">
+
+      <a href="index.html" class="text-white hover:text-yellow-400 block px-2 py-1">Home</a>
+      <a href="about.html" class="text-white hover:text-yellow-400 block px-2 py-1">About</a>
+      <a href="clubs.html" class="text-white hover:text-yellow-400 block px-2 py-1">Clubs</a>
+      <a href="sports.html" class="text-white hover:text-yellow-400 block px-2 py-1">Sports</a>
+      <a href="prefects.html" class="text-white hover:text-yellow-400 block px-2 py-1">Prefects</a>
+      <a href="news.html" class="text-yellow-400 block px-2 py-1 font-semibold">News</a>
+      <a href="contact.html" class="text-white hover:text-yellow-400 block px-2 py-1">Contact</a>
+      <a href="results-portal.html" class="text-yellow-400 hover:text-yellow-300 block px-2 py-1 font-semibold">
+        Results Portal
+      </a>
+    </div>
+
   </div>
-</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative text-center py-24 bg-cover bg-center text-white"
+  style="background-image: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6');">
+
+  <div class="absolute inset-0 bg-blue-900 bg-opacity-80"></div>
+
+  <div class="relative z-10">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">School News & Updates</h1>
+    <p class="text-blue-100 text-lg">
+      Stay updated with the latest achievements and events at Blantyre Secondary School
+    </p>
+  </div>
+</section>
 
 <!-- NEWS SECTION -->
-<section class="section">
-  <h2 style="color:#1b4f72;">📢 Latest News</h2>
+<section class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
 
-  <!-- News Item -->
-  <div class="news-item">
-    <h3>Blessings Phambala Shines at Public Speaking Competition 🏆</h3>
-    <p><strong>Date:</strong> June 20, 2025</p>
-    <img src="images/blessings-phambala.jpg" alt="Blessings Phambala" />
-    <p>
-      Blantyre Secondary School student <strong>Blessings Phambala</strong> has been crowned the winner of the 
-      inaugural <em>Blantyre City Public Speaking Competition</em> for Secondary Schools. The event took place at 
-      Golden Peacock Hotel, where students from various schools showcased their eloquence and passion. Her speech 
-      on youth empowerment earned a standing ovation from the audience.
-    </p>
-    <p>
-      Congratulations to Blessings for making BSS proud! 👏 We look forward to more achievements from our students.
-    </p>
+  <!-- News Card 1 -->
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+    <img src="images/blessings-phambala.jpg"
+         alt="Blessings Phambala"
+         class="w-full h-64 object-cover">
+
+    <div class="p-6">
+      <h3 class="text-2xl font-semibold text-blue-900 mb-2">
+        Blessings Phambala Wins Public Speaking Competition 🏆
+      </h3>
+      <p class="text-sm text-gray-500 mb-3">June 20, 2025</p>
+
+      <p class="text-gray-700">
+        Our student Blessings Phambala emerged as the winner of the
+        Blantyre City Public Speaking Competition held at Golden Peacock Hotel.
+        Her inspiring speech on youth empowerment earned a standing ovation.
+      </p>
+    </div>
   </div>
 
-  <!-- Future News Items can go below -->
+  <!-- News Card 2 -->
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94"
+         alt="School Sports Event"
+         class="w-full h-64 object-cover">
+
+    <div class="p-6">
+      <h3 class="text-2xl font-semibold text-blue-900 mb-2">
+        Inter-House Sports Competition Announced ⚽
+      </h3>
+      <p class="text-sm text-gray-500 mb-3">July 10, 2025</p>
+
+      <p class="text-gray-700">
+        Blantyre Secondary School will host its annual Inter-House Sports Competition
+        next month. Students are encouraged to participate and represent their houses proudly.
+      </p>
+    </div>
+  </div>
+
 </section>
 
 <!-- FOOTER -->
-<div class="footer">
-  <h3>📍 Visit Us</h3>
-  <p>Blantyre Secondary School, Ndirande, Blantyre, Malawi</p>
-  <p>📧 Email: info@blantyress.mw | ☎️ +265 999 123 456</p>
-  <p>&copy; 2025 Blantyre Secondary School. Designed with care in Malawi 🇲🇼</p>
-</div>
+<footer class="bg-blue-900 text-white text-center py-10">
+  <p class="mb-2">Blantyre Secondary School, Ndirande, Blantyre, Malawi</p>
+  <p>Email: info@blantyress.mw | Phone: +265 999 123 456</p>
+  <p class="mt-4 text-sm text-blue-200">
+    © 2026 Blantyre Secondary School. All Rights Reserved.
+  </p>
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+  const btn = document.getElementById("mobileMenuBtn");
+  const menu = document.getElementById("mobileMenu");
+
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+</script>
 
 </body>
 </html>
-
-
-
