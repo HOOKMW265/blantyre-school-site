@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <style>
     html { scroll-behavior: smooth; }
     body { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -20,57 +18,95 @@
     .section-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
   </style>
 </head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">  <!-- Navigation -->  <nav class="sticky top-0 bg-blue-900 shadow-lg z-50" aria-label="Main Navigation">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <a href="index.html" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition">Blantyre Secondary School</a>
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-white hover:text-yellow-400">Home</a>
+          <a href="about.html" class="text-white hover:text-yellow-400">About</a>
+          <div class="dropdown relative">
+            <a class="text-white hover:text-yellow-400 cursor-pointer" aria-haspopup="true">Students ▾</a>
+            <div class="dropdown-content absolute top-full right-0 mt-2 bg-blue-900 rounded-lg shadow-xl min-w-[12rem] py-2">
+              <a href="clubs.html" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Clubs</a>
+              <a href="prefects.html" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Prefects</a>
+            </div>
+          </div>
+          <a href="news.html" class="text-white hover:text-yellow-400">News</a>
+          <a href="contact.html" class="text-white hover:text-yellow-400">Contact</a>
+          <a href="results-portal.html" class="text-yellow-400 font-semibold hover:text-yellow-300">Results Portal</a>
+        </div>
+        <button id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false" class="md:hidden text-white hover:text-yellow-400">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div><!-- Mobile Menu -->
+  <div id="mobileMenu" class="md:hidden hidden absolute top-full bg-blue-900 rounded-lg shadow-lg p-4 space-y-2">
+    <a href="index.html" class="text-white hover:text-yellow-400 block px-2 py-1">Home</a>
+    <a href="about.html" class="text-white hover:text-yellow-400 block px-2 py-1">About</a>
+    <a href="clubs.html" class="text-white hover:text-yellow-400 block px-2 py-1">Clubs</a>
+    <a href="prefects.html" class="text-white hover:text-yellow-400 block px-2 py-1">Prefects</a>
+    <a href="news.html" class="text-white hover:text-yellow-400 block px-2 py-1">News</a>
+    <a href="contact.html" class="text-white hover:text-yellow-400 block px-2 py-1">Contact</a>
+    <a href="results-portal.html" class="text-yellow-400 hover:text-yellow-300 block px-2 py-1 font-semibold">Results Portal</a>
+  </div>
+</div>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-
-<!-- NAVIGATION -->
-<nav class="sticky top-0 bg-blue-900 shadow-lg z-50">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="flex justify-between items-center py-4">
-      <a href="index.html" class="text-2xl font-bold text-yellow-400">Blantyre Secondary School</a>
-      <div class="hidden md:flex space-x-8">
-        <a href="index.html" class="text-white hover:text-yellow-400">Home</a>
-        <a href="about.html" class="text-white hover:text-yellow-400">About</a>
-        <a href="news.html" class="text-white hover:text-yellow-400">News</a>
-        <a href="contact.html" class="text-white hover:text-yellow-400">Contact</a>
+  </nav>  <!-- Hero Section -->  <section class="relative text-center py-24 bg-cover bg-center text-white" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b');">
+    <div class="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
+    <div class="relative z-10">
+      <h1 class="text-5xl font-bold mb-4" data-aos="fade-up">Welcome to Blantyre Secondary School</h1>
+      <p class="text-lg mb-6 text-blue-100" data-aos="fade-up" data-aos-delay="200">"Success Through Discipline"</p>
+      <a href="about.html" class="bg-yellow-400 hover:bg-yellow-300 text-blue-900 px-6 py-3 rounded-lg font-semibold transition" data-aos="fade-up" data-aos-delay="400">Learn More</a>
+      <a href="results-portal.html" class="ml-4 bg-white hover:bg-yellow-200 text-blue-900 px-6 py-3 rounded-lg font-semibold transition" data-aos="fade-up" data-aos-delay="500">Check Results</a>
+    </div>
+  </section>  <!-- About Section -->  <section class="max-w-5xl mx-auto px-6 py-16" data-aos="fade-up">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
+        <h2 class="text-4xl font-bold mb-4">About Us</h2>
+        <p class="italic text-blue-100">Founded in 1940 • A legacy of learning and leadership</p>
+      </div>
+      <div class="p-8 space-y-6 text-gray-700">
+        <p>Blantyre Secondary School is one of Malawi's most prestigious educational institutions, known for its commitment to academic excellence, integrity, and student development.</p>
+        <p>We focus on nurturing future leaders through a balance of academics, sports, and creativity.</p>
       </div>
     </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="relative text-center py-24 bg-cover bg-center text-white"
-  style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b');">
-  <div class="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
-  <div class="relative z-10">
-    <h1 class="text-5xl font-bold mb-4">Welcome to Blantyre Secondary School</h1>
-    <p class="text-lg mb-6 text-blue-100">"Success Through Discipline"</p>
-  </div>
-</section>
-
-<!-- NEWS SECTION -->
-<section class="bg-blue-50 py-16">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <h2 class="text-4xl font-bold text-blue-900 mb-10">📰 Top Stories & Events</h2>
-
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-
-      <!-- Graduation Card -->
-      <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1"
-             alt="Graduation Ceremony"
-             class="w-full h-48 object-cover" />
-
-        <div class="p-4 text-left">
-          <p class="text-sm text-gray-500 mb-2">October 15, 2025</p>
-          <h3 class="font-bold text-blue-800 text-lg mb-2">2025 Graduation Ceremony</h3>
-          <p class="text-gray-600 text-sm">A memorable day celebrating our graduating students’ achievements.</p>
-          <a href="news.html" class="text-blue-700 underline mt-2 block">Read More</a>
+  </section>  <!-- Students Section -->  <section class="bg-blue-50 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-blue-900 mb-10" data-aos="fade-up">🎓 Student Life</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="section-card bg-white rounded-xl p-6 shadow-lg" data-aos="fade-up">
+          <h3 class="font-bold text-blue-800 text-xl mb-3">Clubs</h3>
+          <p class="text-gray-600">Join clubs like Debate, Wildlife, and ICT to explore your interests and talents.</p>
+          <a href="clubs.html" class="text-blue-700 underline mt-2 block">Learn More</a>
+        </div>
+        <div class="section-card bg-white rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="150">
+          <h3 class="font-bold text-blue-800 text-xl mb-3">Sports</h3>
+          <p class="text-gray-600">From football to netball, our students excel in physical and mental fitness.</p>
+          <a href="sports.html" class="text-blue-700 underline mt-2 block">Learn More</a>
+        </div>
+        <div class="section-card bg-white rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="font-bold text-blue-800 text-xl mb-3">Prefects</h3>
+          <p class="text-gray-600">Our student leaders help maintain discipline and inspire excellence.</p>
+          <a href="prefects.html" class="text-blue-700 underline mt-2 block">Learn More</a>
         </div>
       </div>
-
-      <!-- Yankho Card (FIXED & IMPROVED) -->
-      <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
+    </div>
+  </section>  <!-- News Section -->  <section class="bg-blue-50 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-blue-900 mb-10" data-aos="fade-up">📰 Top Stories & Events</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1" alt="Graduation Ceremony" class="w-full h-48 object-cover" />
+          <div class="p-4 text-left">
+            <p class="text-sm text-gray-500 mb-2">October 15, 2025</p>
+            <h3 class="font-bold text-blue-800 text-lg mb-2">2025 Graduation Ceremony</h3>
+            <p class="text-gray-600 text-sm">A memorable day celebrating our graduating students’ achievements.</p>
+            <a href="news.html" class="text-blue-700 underline mt-2 block">Read More</a>
+          </div>
+        </div>
+       <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
         <img src="yankho seunda.jpg"
              alt="Yankho Seunda"
              class="w-full h-64 object-cover object-top" />
@@ -95,32 +131,34 @@
         </div>
       </div>
 
-      <!-- Sports Card -->
-      <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238"
-             alt="Sports Competition"
-             class="w-full h-48 object-cover" />
-
-        <div class="p-4 text-left">
-          <p class="text-sm text-gray-500 mb-2">August 12, 2025</p>
-          <h3 class="font-bold text-blue-800 text-lg mb-2">Inter-school Sports Competition</h3>
-          <p class="text-gray-600 text-sm">Our teams won 5 trophies in various sports categories this year!</p>
-          <a href="news.html" class="text-blue-700 underline mt-2 block">Read More</a>
+        <div class="section-card bg-white rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="Sports Competition" class="w-full h-48 object-cover" />
+          <div class="p-4 text-left">
+            <p class="text-sm text-gray-500 mb-2">August 12, 2025</p>
+            <h3 class="font-bold text-blue-800 text-lg mb-2">Inter-school Sports Competition</h3>
+            <p class="text-gray-600 text-sm">Our teams won 5 trophies in various sports categories this year!</p>
+            <a href="news.html" class="text-blue-700 underline mt-2 block">Read More</a>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-gray-800 text-white py-6 text-center">
-  <p>&copy; 2026 Blantyre Secondary School. All Rights Reserved.</p>
-</footer>
-
-<script>
-  AOS.init({ duration: 800, once: true });
-</script>
-
-</body>
+  </section>  <!-- Contact Section -->  <section class="py-16 bg-indigo-900 text-white">
+    <div class="max-w-4xl mx-auto text-center px-6" data-aos="fade-up">
+      <h2 class="text-3xl font-bold mb-6 text-yellow-400">Contact Us</h2>
+      <p class="mb-6">Blantyre Secondary School, P.O. Box 123, Blantyre, Malawi</p>
+      <p>Email: <a href="mailto:info@blantyress.mw" class="underline hover:text-yellow-300">info@blantyress.mw</a></p>
+      <p>Phone: +265 999 107 855</p>
+    </div>
+  </section>  <!-- Footer -->  <footer class="bg-gray-800 text-white py-6 text-center">
+    <p>&copy; 2026 Blantyre Secondary School. All Rights Reserved.</p>
+  </footer>  <script>
+    AOS.init({ duration: 800, once: true });
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      const expanded = mobileMenuBtn.getAttribute("aria-expanded") === "true";
+      mobileMenuBtn.setAttribute("aria-expanded", !expanded);
+    });
+  </script></body>
 </html>
