@@ -6,99 +6,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About - Blantyre Secondary School</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .nav-active { display: block; }
-  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
 
   <!-- Navbar -->
-  <header class="bg-blue-900 text-white fixed w-full top-0 left-0 z-50 shadow-lg">
-    <nav class="max-w-6xl mx-auto flex justify-between items-center p-4">
-      <h1 class="text-2xl font-bold text-yellow-400">Blantyre Secondary School</h1>
-      <button id="menu-btn" class="md:hidden text-white focus:outline-none">☰</button>
-      <ul id="menu" class="hidden md:flex space-x-6">
-        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
-        <li><a href="about.html" class="hover:text-yellow-400 text-yellow-400 font-semibold">About</a></li>
-        <li><a href="news.html" class="hover:text-yellow-400">News</a></li>
-        <li><a href="contact.html" class="hover:text-yellow-400">Contact</a></li>
+  <header class="bg-blue-950 text-white fixed w-full top-0 left-0 z-50 shadow-lg">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      
+      <!-- Logo + Name -->
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="School Logo" class="w-10 h-10 object-contain">
+        <h1 class="text-xl md:text-2xl font-bold text-yellow-400">
+          Blantyre Secondary School
+        </h1>
+      </div>
+
+      <button id="menu-btn" class="md:hidden text-2xl">☰</button>
+
+      <ul class="hidden md:flex space-x-8 font-medium">
+        <li><a href="index.html" class="hover:text-yellow-400 transition">Home</a></li>
+        <li><a href="about.html" class="text-yellow-400 font-semibold">About</a></li>
+        <li><a href="news.html" class="hover:text-yellow-400 transition">News</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-400 transition">Contact</a></li>
       </ul>
     </nav>
 
-    <!-- Mobile dropdown -->
-    <ul id="dropdown" class="hidden bg-blue-800 text-white absolute right-4 mt-2 rounded-lg shadow-lg md:hidden w-48">
-      <li><a href="index.html" class="block px-4 py-2 hover:bg-blue-700">Home</a></li>
-      <li><a href="about.html" class="block px-4 py-2 hover:bg-blue-700">About</a></li>
-      <li><a href="students.html" class="block px-4 py-2 hover:bg-blue-700">Students</a></li>
-      <li><a href="news.html" class="block px-4 py-2 hover:bg-blue-700">News</a></li>
-      <li><a href="contact.html" class="block px-4 py-2 hover:bg-blue-700">Contact</a></li>
-    </ul>
+    <!-- Mobile Dropdown -->
+    <div id="dropdown" class="hidden md:hidden bg-blue-900">
+      <a href="index.html" class="block px-6 py-3 hover:bg-blue-800">Home</a>
+      <a href="about.html" class="block px-6 py-3 hover:bg-blue-800">About</a>
+      <a href="news.html" class="block px-6 py-3 hover:bg-blue-800">News</a>
+      <a href="contact.html" class="block px-6 py-3 hover:bg-blue-800">Contact</a>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="pt-24 bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-20">
-    <h2 class="text-4xl font-bold mb-4">About Blantyre Secondary School</h2>
-    <p class="text-lg italic text-yellow-300">"success comes through Discipline"</p>
+  <section class="relative pt-28 pb-24 bg-blue-800 text-white text-center">
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        About Our Institution
+      </h2>
+      <p class="text-lg text-yellow-300 italic">
+        "Success Comes Through Discipline"
+      </p>
+    </div>
   </section>
 
   <!-- About Content -->
-  <section class="max-w-5xl mx-auto py-16 px-6">
-    <div class="text-center mb-12">
-      <h3 class="text-3xl font-bold text-blue-900 mb-4">Our Mission & Vision</h3>
-      <p class="text-gray-700 max-w-2xl mx-auto">
-        At Blantyre Secondary School, our mission is to nurture young minds into responsible,
-        knowledgeable, and disciplined citizens. We strive to provide a balanced education that
-        promotes academic excellence, creativity, and moral integrity.
-      </p>
-    </div>
+  <section class="max-w-6xl mx-auto py-20 px-6">
+    
+    <div class="grid md:grid-cols-2 gap-14 items-center">
+      
+      <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80"
+           alt="Students Learning"
+           class="rounded-2xl shadow-xl w-full h-96 object-cover">
 
-    <div class="grid md:grid-cols-2 gap-10">
       <div>
-        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80"
-             alt="Students Learning" class="rounded-xl shadow-lg w-full h-80 object-cover">
+        <h3 class="text-3xl font-bold text-blue-900 mb-6">
+          A Legacy of Excellence Since 1972
+        </h3>
+
+        <p class="text-gray-700 mb-5 leading-relaxed">
+          Blantyre Secondary School has remained one of Malawi’s respected
+          institutions committed to academic excellence and moral discipline.
+          Our mission is to develop responsible, confident, and innovative learners.
+        </p>
+
+        <p class="text-gray-700 leading-relaxed">
+          Through modern teaching methods, co-curricular activities, and
+          strong leadership training, we prepare students for higher education
+          and global opportunities.
+        </p>
       </div>
 
-      <div class="flex flex-col justify-center">
-        <h4 class="text-2xl font-semibold text-blue-800 mb-4">A Legacy of Excellence</h4>
-        <p class="text-gray-700 mb-4">
-          Established in 1972, Blantyre Secondary School has stood as a beacon of educational
-          achievement in Malawi. Our dedicated teachers and modern facilities create an environment
-          that fosters innovation, teamwork, and leadership.
-        </p>
-        <p class="text-gray-700">
-          We take pride in our diverse student body and our long-standing record of success in
-          academics, sports, and community service.
-        </p>
+    </div>
+  </section>
+
+  <!-- School Stats -->
+  <section class="bg-blue-900 text-white py-16">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 text-center px-6">
+      <div>
+        <h4 class="text-4xl font-bold text-yellow-400">1,200+</h4>
+        <p>Students</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-bold text-yellow-400">50+</h4>
+        <p>Qualified Teachers</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-bold text-yellow-400">98%</h4>
+        <p>Exam Pass Rate</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-bold text-yellow-400">50+ Years</h4>
+        <p>Excellence</p>
       </div>
     </div>
   </section>
 
   <!-- Core Values -->
-  <section class="bg-blue-50 py-16">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold text-blue-900 mb-10">Our Core Values</h3>
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold text-blue-800 mb-3">Discipline</h4>
-          <p class="text-gray-600">We believe discipline is the foundation of excellence and integrity in all pursuits.</p>
+  <section class="py-20 bg-gray-100">
+    <div class="max-w-6xl mx-auto text-center px-6">
+      <h3 class="text-3xl font-bold text-blue-900 mb-12">Our Core Values</h3>
+
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold text-blue-800 mb-4">Discipline</h4>
+          <p class="text-gray-600">We uphold discipline as the cornerstone of academic and moral success.</p>
         </div>
-        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold text-blue-800 mb-3">Integrity</h4>
-          <p class="text-gray-600">Our students learn to act with honesty, fairness, and respect in all situations.</p>
+
+        <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold text-blue-800 mb-4">Integrity</h4>
+          <p class="text-gray-600">We nurture honesty, accountability, and respect in every learner.</p>
         </div>
-        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold text-blue-800 mb-3">Excellence</h4>
-          <p class="text-gray-600">We encourage academic and personal excellence in every student we teach.</p>
+
+        <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold text-blue-800 mb-4">Excellence</h4>
+          <p class="text-gray-600">We strive for high standards in academics, leadership, and service.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-900 text-white py-6 text-center">
-    <p class="text-sm">&copy; 2025 Blantyre Secondary School. All Rights Reserved.</p>
+  <footer class="bg-blue-950 text-white py-8">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="mb-2 font-semibold">Blantyre Secondary School</p>
+      <p class="text-sm text-gray-300">
+        &copy; 2026 All Rights Reserved.
+      </p>
+    </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
     const menuBtn = document.getElementById('menu-btn');
     const dropdown = document.getElementById('dropdown');
@@ -106,15 +148,6 @@
       dropdown.classList.toggle('hidden');
     });
   </script>
-<script>
-document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
-});
-</script>
+
 </body>
 </html>
-
-
-
-
-
