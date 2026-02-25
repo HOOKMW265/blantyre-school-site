@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blantyre Secondary School - Prefects</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  .section-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .section-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+</style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+
+<!-- Navigation -->
+<nav class="sticky top-0 bg-blue-900 shadow-lg z-50">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition">
+      Blantyre Secondary School
+    </a>
+
+    <div class="hidden md:flex space-x-8">
+      <a href="index.html" class="text-white hover:text-yellow-400">Home</a>
+      <a href="about.html" class="text-white hover:text-yellow-400">About</a>
+      <a href="prefects.html" class="text-yellow-400 font-semibold">Prefects</a>
+      <a href="contact.html" class="text-white hover:text-yellow-400">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative text-center py-20 bg-cover bg-center text-white"
+style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1');">
+
+  <div class="absolute inset-0 bg-blue-900 bg-opacity-80"></div>
+
+  <div class="relative z-10" data-aos="fade-up">
+    <h1 class="text-5xl font-bold mb-4">Our School Prefects</h1>
+    <p class="text-blue-200 text-lg">Student Leaders • Role Models • Discipline Ambassadors</p>
+  </div>
+</section>
+
+<!-- Prefects Section -->
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+
+    <h2 class="text-4xl font-bold text-blue-900 mb-12" data-aos="fade-up">
+      Meet the 2026 Prefectorial Board
+    </h2>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+      <!-- Head Boy -->
+      <div class="section-card bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up">
+        <img src="https://via.placeholder.com/400x400" 
+             class="w-full h-64 object-cover object-top" 
+             alt="Head Boy">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-blue-900">John Banda</h3>
+          <p class="text-yellow-500 font-semibold mt-1">Head Boy</p>
+          <p class="text-gray-500 text-sm mt-2">Form 4A</p>
+        </div>
+      </div>
+
+      <!-- Head Girl -->
+      <div class="section-card bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="150">
+        <img src="https://via.placeholder.com/400x400" 
+             class="w-full h-64 object-cover object-top" 
+             alt="Head Girl">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-blue-900">Mary Phiri</h3>
+          <p class="text-yellow-500 font-semibold mt-1">Head Girl</p>
+          <p class="text-gray-500 text-sm mt-2">Form 4B</p>
+        </div>
+      </div>
+
+      <!-- Sports Captain -->
+      <div class="section-card bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://via.placeholder.com/400x400" 
+             class="w-full h-64 object-cover object-top" 
+             alt="Sports Captain">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-blue-900">Peter Mwale</h3>
+          <p class="text-yellow-500 font-semibold mt-1">Sports Captain</p>
+          <p class="text-gray-500 text-sm mt-2">Form 3A</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-6 text-center">
+  <p>&copy; 2026 Blantyre Secondary School. All Rights Reserved.</p>
+</footer>
+
+<script>
+AOS.init({ duration: 800, once: true });
+</script>
+
+</body>
+</html>
