@@ -19,30 +19,45 @@
     .section-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">  <!-- Navigation -->  <nav class="sticky top-0 bg-blue-900 shadow-lg z-50" aria-label="Main Navigation">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center py-4">
-        <a href="index.html" class="text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition">Blantyre Secondary School</a>
-        <div class="hidden md:flex space-x-8">
-          <a href="index.html" class="text-white hover:text-yellow-400">Home</a>
-          <a href="about.html" class="text-white hover:text-yellow-400">About</a>
-          <div class="dropdown relative">
-            <a class="text-white hover:text-yellow-400 cursor-pointer" aria-haspopup="true">Students ▾</a>
-            <div class="dropdown-content absolute top-full right-0 mt-2 bg-blue-900 rounded-lg shadow-xl min-w-[12rem] py-2">
-              <a href="clubs.html" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Clubs</a>
-              <a href="Prefects.html" class="block px-4 py-2 text-white hover:bg-blue-800 hover:text-yellow-400">Prefects</a>
-            </div>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">  <!-- Navigation -->  <!-- Navigation -->
+<nav class="sticky top-0 bg-blue-900 shadow-lg z-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center py-4">
+
+      <a href="index.html"
+         class="text-2xl font-bold text-yellow-400 hover:text-yellow-300">
+         Blantyre Secondary School
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-yellow-400 font-semibold">Home</a>
+        <a href="about.html" class="text-white hover:text-yellow-400">About</a>
+
+        <div class="relative group">
+          <span class="text-white cursor-pointer hover:text-yellow-400">
+            Students ▾
+          </span>
+
+          <div class="absolute hidden group-hover:block bg-blue-900 rounded-lg shadow-lg mt-2">
+            <a href="clubs.html" class="block px-4 py-2 text-white hover:bg-blue-800">Clubs</a>
+            <a href="prefects.html" class="block px-4 py-2 text-white hover:bg-blue-800">
+              Prefects
+            </a>
           </div>
-          <a href="news.html" class="text-white hover:text-yellow-400">News</a>
-          <a href="contact.html" class="text-white hover:text-yellow-400">Contact</a>
-          <a href="results-portal.html" class="text-yellow-400 font-semibold hover:text-yellow-300">Results Portal</a>
         </div>
-        <button id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false" class="md:hidden text-white hover:text-yellow-400">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div><!-- Mobile Menu -->
+
+        <a href="news.html" class="text-white hover:text-yellow-400">News</a>
+        <a href="contact.html" class="text-white hover:text-yellow-400">Contact</a>
+        <a href="results-portal.html"
+           class="text-yellow-400 hover:text-yellow-300 font-semibold">
+           Results Portal
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
   <div id="mobileMenu" class="md:hidden hidden absolute top-full bg-blue-900 rounded-lg shadow-lg p-4 space-y-2">
     <a href="index.html" class="text-white hover:text-yellow-400 block px-2 py-1">Home</a>
     <a href="about.html" class="text-white hover:text-yellow-400 block px-2 py-1">About</a>
