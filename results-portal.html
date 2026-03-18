@@ -168,35 +168,32 @@
   <footer>© 2026 – Blantyre Secondary School</footer>
 
   <script>
-    const form = document.getElementById("resultForm");
-    const resultsDiv = document.getElementById("resultsDiv");
-    const studentInfo = document.getElementById("studentInfo");
-    const reportFrame = document.getElementById("reportFrame");
+  const API_URL = "https://script.google.com/macros/s/AKfycbypDxUEs1F71lC7REMWI8yvZvG74cAP8NvihabKbHm4WMYzzBwIYoRLozCCg3w78BXB/exec";
 
-    const reports = {
-      "BSS1964_2009-05-15": "https://drive.google.com/file/d/1np5a7khDA85u3LgD7Nusxyry39B4t6-Q/preview",
-      "BSS1023_2007-01-21": "https://drive.google.com/file/d/FILE_ID/preview"
-    };
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+  const examNo = document.getElementById("examNo").value.trim().toUpperCase();
+  const dob = document.getElementById("dob").value;
 
-      const examNo = document.getElementById("examNo").value.trim().toUpperCase();
-      const dob = document.getElementById("dob").value;
+  const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
 
-      const key = examNo + "_" + dob;
+  const res = await fetch(url);
+  const data = await res.json();
 
-      if (!reports[key]) {
-        alert("No report found for the entered details.");
-        return;
-      }
+  if (!data.success) {
+    alert("No report found for the entered details.");
+    return;
+  }
 
-      studentInfo.textContent = "Examination Report – " + examNo;
-      reportFrame.src = reports[key];
+  const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
 
-      form.style.display = "none";
-      resultsDiv.style.display = "block";
-    });
+  studentInfo.textContent = "Examination Report – " + examNo;
+  reportFrame.src = driveLink;
+
+  form.style.display = "none";
+  resultsDiv.style.display = "block";
+});
   </script>
 
 </body>
