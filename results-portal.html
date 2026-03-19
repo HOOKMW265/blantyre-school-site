@@ -178,10 +178,11 @@
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const examNo = document.getElementById("examNo").value.trim().toUpperCase();
-    const dob = document.getElementById("dob").value;
+   const dobInput = document.getElementById("dob").value;
+const [year, month, day] = dobInput.split("-");
+const formattedDob = `${day}-${month}-${year}`;
 
-    const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
+const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
     console.log("Request:", url); // debug
 
     try {
