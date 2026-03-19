@@ -180,7 +180,7 @@
 
    const dobInput = document.getElementById("dob").value;
 const [year, month, day] = dobInput.split("-");
-const formattedDob = `${day}-${month}-${year}`;
+const formattedDob = `${year}-${month}-${day}`;
 
 const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
     console.log("Request:", url); // debug
