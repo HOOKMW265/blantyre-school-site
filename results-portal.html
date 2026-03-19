@@ -166,35 +166,49 @@
   </div>
 
   <footer>© 2026 – Blantyre Secondary School</footer>
-
-  <script>
+<script>
   const API_URL = "https://script.google.com/macros/s/AKfycbwj7qcTeJpbX_UkuKE3daarSVaDgMQZHsKlEEuSPwE-LlB35WoybXoBtjP6t-ZI1JCT/exec";
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+  // ✅ ADD THESE LINES (you missed them)
+  const form = document.getElementById("resultForm");
+  const resultsDiv = document.getElementById("resultsDiv");
+  const studentInfo = document.getElementById("studentInfo");
+  const reportFrame = document.getElementById("reportFrame");
 
-  const examNo = document.getElementById("examNo").value.trim().toUpperCase();
-  const dob = document.getElementById("dob").value;
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
+    const examNo = document.getElementById("examNo").value.trim().toUpperCase();
+    const dob = document.getElementById("dob").value;
 
-  const res = await fetch(url);
-  const data = await res.json();
+    const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
+    console.log("Request:", url); // debug
 
-  if (!data.success) {
-    alert("No report found for the entered details.");
-    return;
-  }
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
 
-  const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
+      console.log("Response:", data); // debug
 
-  studentInfo.textContent = "Examination Report – " + examNo;
-  reportFrame.src = driveLink;
+      if (!data.success) {
+        alert("No report found for the entered details.");
+        return;
+      }
 
-  form.style.display = "none";
-  resultsDiv.style.display = "block";
-});
-  </script>
+      const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
+
+      studentInfo.textContent = "Examination Report – " + examNo;
+      reportFrame.src = driveLink;
+
+      form.style.display = "none";
+      resultsDiv.style.display = "block";
+
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong. Check console.");
+    }
+  });
+</script>
 
 </body>
 </html>
