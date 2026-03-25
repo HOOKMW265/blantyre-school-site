@@ -167,48 +167,44 @@
 
   <footer>© 2026 – Blantyre Secondary School</footer>
 <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbwAyf1tQ2nSQrWzo3utAxRm1dSvTUVl6ijzum94Dlm19GlawAPHzL_G1Qf8IGCLpoc/exec";
-
-  // ✅ ADD THESE LINES (you missed them)
-  const form = document.getElementById("resultForm");
-  const resultsDiv = document.getElementById("resultsDiv");
-  const studentInfo = document.getElementById("studentInfo");
-  const reportFrame = document.getElementById("reportFrame");
+  const API_URL "https://script.google.com/macros/s/AKfycbzUeWYpbtWh0hgFxAOynQk2bYWt_YrweaYjTMsa1JIF7aCIihAPM506z1tjp3MaWFLQ/exec";
 
   form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-   const dobInput = document.getElementById("dob").value;
-const [year, month, day] = dobInput.split("-");
-const formattedDob = `${year}-${month}-${day}`;
+  const examNo = document.getElementById("examNo").value.trim();
 
-const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
-    console.log("Request:", url); // debug
+  const dobInput = document.getElementById("dob").value;
+  const date = new Date(dobInput);
+  const formattedDob = date.toISOString().split("T")[0];
 
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
+  const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
+  console.log("Request:", url);
 
-      console.log("Response:", data); // debug
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
 
-      if (!data.success) {
-        alert("No report found for the entered details.");
-        return;
-      }
+    console.log("Response:", data);
 
-      const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
-
-      studentInfo.textContent = "Examination Report – " + examNo;
-      reportFrame.src = driveLink;
-
-      form.style.display = "none";
-      resultsDiv.style.display = "block";
-
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Something went wrong. Check console.");
+    if (!data.success) {
+      alert("No report found for the entered details.");
+      return;
     }
-  });
+
+    const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
+
+    studentInfo.textContent = "Examination Report – " + examNo;
+    reportFrame.src = driveLink;
+
+    form.style.display = "none";
+    resultsDiv.style.display = "block";
+
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Something went wrong. Check console.");
+  }
+});
 </script>
 
 </body>
