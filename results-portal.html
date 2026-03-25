@@ -174,11 +174,11 @@
 
   const examNo = document.getElementById("examNo").value.trim();
 
-  const dobInput = document.getElementById("dob").value;
-  const date = new Date(dobInput);
-  const formattedDob = date.toISOString().split("T")[0];
+const dobInput = document.getElementById("dob").value;
+const date = new Date(dobInput);
+const formattedDob = date.toISOString().split("T")[0];
 
-  const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
+const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
   console.log("Request:", url);
 
   try {
