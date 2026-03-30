@@ -1,211 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Examination Results Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examination Results Portal</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 0;
-    }
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  padding:0;
 
-    .container {
-      width: 95%;
-      max-width: 480px;
-      margin: 30px auto;
-      padding: 22px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+  /* EDUCATION PATTERN BACKGROUND */
+  background-color:#f4f6f8;
+  background-image:url('pattern.png');
+  background-size:350px;
+  background-repeat:repeat;
+}
 
-    .logo {
-      width: 110px;
-      display: block;
-      margin: 0 auto 10px;
-    }
+/* MAIN CARD */
+.container{
+  width:95%;
+  max-width:480px;
+  margin:30px auto;
+  padding:22px;
+  background-color:rgba(255,255,255,0.96);
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
 
-    h2 {
-      margin: 2px 0;
-      font-size: 20px;
-      text-align: center;
-      color: #222;
-    }
+.logo{
+  width:110px;
+  display:block;
+  margin:0 auto 10px;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #0f7a41;
-      font-style: italic;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
+h2{
+  margin:2px 0;
+  font-size:20px;
+  text-align:center;
+  color:#222;
+}
 
-    label {
-      display: block;
-      margin-top: 14px;
-      font-weight: bold;
-      font-size: 14px;
-      color: #333;
-    }
+.subtitle{
+  text-align:center;
+  color:#0f7a41;
+  font-style:italic;
+  font-size:14px;
+  margin-bottom:15px;
+}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      font-size: 16px;
-      border: 1px solid #bbb;
-      border-radius: 5px;
-    }
+/* FORM */
+label{
+  display:block;
+  margin-top:14px;
+  font-weight:bold;
+  font-size:14px;
+  color:#333;
+}
 
-    input:focus {
-      outline: none;
-      border-color: #0f7a41;
-      box-shadow: 0 0 0 2px rgba(15,122,65,0.15);
-    }
+input{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  font-size:16px;
+  border:1px solid #bbb;
+  border-radius:5px;
+}
 
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 22px;
-      background-color: #0f7a41;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+input:focus{
+  outline:none;
+  border-color:#0f7a41;
+  box-shadow:0 0 0 2px rgba(15,122,65,0.15);
+}
 
-    button:hover {
-      background-color: #0d6a38;
-    }
+button{
+  width:100%;
+  padding:13px;
+  margin-top:22px;
+  background-color:#0f7a41;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
 
-    .results {
-      display: none;
-      margin-top: 20px;
-    }
+button:hover{
+  background-color:#0d6a38;
+}
 
-    .student-info {
-      text-align: center;
-      font-weight: bold;
-      color: #0f7a41;
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
+/* RESULTS */
+.results{
+  display:none;
+  margin-top:20px;
+}
 
-    .iframe-wrapper {
-      width: 100%;
-      height: 70vh;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #fff;
-    }
+.student-info{
+  text-align:center;
+  font-weight:bold;
+  color:#0f7a41;
+  margin-bottom:10px;
+  font-size:16px;
+}
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+.iframe-wrapper{
+  width:100%;
+  height:70vh;
+  border:1px solid #ccc;
+  border-radius:6px;
+  overflow:hidden;
+  background:#fff;
+}
 
-    footer {
-      text-align: center;
-      margin: 25px 0;
-      color: #777;
-      font-size: 13px;
-    }
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
 
-    @media (min-width: 900px) {
-      .container {
-        max-width: 600px;
-      }
-    }
-  </style>
+footer{
+  text-align:center;
+  margin:25px 0;
+  color:#777;
+  font-size:13px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-
-   
+<div class="container">
   <img src="logo.png" class="logo" alt="School Logo">
 
+  <h2>Blantyre Secondary School</h2>
+  <h2>Examination Results Portal</h2>
+  <div class="subtitle">"Success Comes Through Discipline"</div>
 
+  <!-- FORM -->
+  <form id="resultForm">
+    <label for="examNo">Examination Number</label>
+    <input type="text" id="examNo" required placeholder="Enter your examination number">
 
-    <h2>Blantyre Secondary School</h2>
-    <h2>Examination Results Portal</h2>
-    <div class="subtitle">"Success Comes Through Discipline" </div>
+    <label for="dob">Date of Birth</label>
+    <input type="date" id="dob" required>
 
-    <!-- FORM -->
-<form id="resultForm">
-  <label for="examNo">Examination Number</label>
-  <input type="text" id="examNo" name="examNo" required placeholder="Enter your examination number">
+    <button type="submit">View Report</button>
+  </form>
 
-  <label for="dob">Date of Birth</label>
-  <input type="date" id="dob" name="dob" required>
-
-  <button type="submit">View Report</button>
-</form>
-
-    <!-- RESULTS -->
-    <div class="results" id="resultsDiv">
-      <div class="student-info" id="studentInfo"></div>
-
-      <div class="iframe-wrapper">
-        <iframe id="reportFrame"></iframe>
-      </div>
+  <!-- RESULTS -->
+  <div class="results" id="resultsDiv">
+    <div class="student-info" id="studentInfo"></div>
+    <div class="iframe-wrapper">
+      <iframe id="reportFrame"></iframe>
     </div>
   </div>
+</div>
 
-  <footer>© 2026 – Blantyre Secondary School</footer>
+<footer>© 2026 – Blantyre Secondary School</footer>
+
 <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbzUeWYpbtWh0hgFxAOynQk2bYWt_YrweaYjTMsa1JIF7aCIihAPM506z1tjp3MaWFLQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzUeWYpbtWh0hgFxAOynQk2bYWt_YrweaYjTMsa1JIF7aCIihAPM506z1tjp3MaWFLQ/exec";
 
-  const form = document.getElementById("resultForm");
-  const resultsDiv = document.getElementById("resultsDiv");
-  const studentInfo = document.getElementById("studentInfo");
-  const reportFrame = document.getElementById("reportFrame");
+const form = document.getElementById("resultForm");
+const resultsDiv = document.getElementById("resultsDiv");
+const studentInfo = document.getElementById("studentInfo");
+const reportFrame = document.getElementById("reportFrame");
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const examNo = document.getElementById("examNo").value.trim();
-    const dobInput = document.getElementById("dob").value;
-    const date = new Date(dobInput);
-    const formattedDob = date.toISOString().split("T")[0];
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-    const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
-    console.log("Request:", url);
+  const examNo = document.getElementById("examNo").value.trim();
+  const dob = new Date(document.getElementById("dob").value)
+              .toISOString().split("T")[0];
 
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log("Response:", data);
+  const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
 
-      if (!data.success) {
-        alert("No report found for the entered details.");
-        return;
-      }
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
 
-      const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
-      studentInfo.textContent = "Examination Report – " + examNo;
-      reportFrame.src = driveLink;
-
-      form.style.display = "none";
-      resultsDiv.style.display = "block";
-
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Something went wrong. Check console.");
+    if (!data.success) {
+      alert("No report found for the entered details.");
+      return;
     }
-  });
+
+    const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
+
+    studentInfo.textContent = "Examination Report – " + examNo;
+    reportFrame.src = driveLink;
+
+    form.style.display = "none";
+    resultsDiv.style.display = "block";
+
+  } catch (err) {
+    alert("Something went wrong. Try again.");
+  }
+});
 </script>
 
 </body>
