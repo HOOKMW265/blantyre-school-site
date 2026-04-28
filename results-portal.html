@@ -219,6 +219,8 @@ const resultsDiv = document.getElementById("resultsDiv");
 const studentInfo = document.getElementById("studentInfo");
 const reportFrame = document.getElementById("reportFrame");
 const spinner = document.getElementById("spinner");
+const examInput = document.getElementById("examNo");
+const dobInputEl = document.getElementById("dob");
 
 function showSpinner(){ spinner.style.display="flex"; }
 function hideSpinner(){ spinner.style.display="none"; }
@@ -227,9 +229,10 @@ form.addEventListener("submit", async function(e){
   e.preventDefault();
   showSpinner();
 
-  const examNo = examNo.value.trim();
-  const dobInput = dob.value;
-  const formattedDob = new Date(dobInput).toISOString().split("T")[0];
+  const examNo = examInput.value.trim();
+  const formattedDob = new Date(dobInputEl.value)
+    .toISOString()
+    .split("T")[0];
 
   try{
     const res = await fetch(`${API_URL}?examNo=${examNo}&dob=${formattedDob}`);
@@ -241,11 +244,13 @@ form.addEventListener("submit", async function(e){
       return;
     }
 
-    studentInfo.textContent = "Examination Report – " + examNo;
-    reportFrame.src = `https://drive.google.com/file/d/${data.fileId}/preview`;
-
+    // Show results area immediately (better UX)
     form.style.display="none";
     resultsDiv.style.display="block";
+    studentInfo.textContent = "Examination Report – " + examNo;
+
+    // MUCH FASTER than /preview
+    reportFrame.src = `https://drive.google.com/uc?export=download&id=${data.fileId}`;
 
     reportFrame.onload = hideSpinner;
 
