@@ -1,252 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Examination Results Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examination Results Portal</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{ box-sizing:border-box; }
 
-    .container {
-      width: 95%;
-      max-width: 480px;
-      margin: 30px auto;
-      padding: 22px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+body{
+  font-family:'Inter',sans-serif;
+  background:#f4f6f8;
+  margin:0;
+}
 
-    .logo {
-      width: 110px;
-      display: block;
-      margin: 0 auto 10px;
-    }
+/* MAIN CARD */
+.container{
+  width:95%;
+  max-width:480px;
+  margin:30px auto;
+  padding:22px;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
 
-    h2 {
-      margin: 2px 0;
-      font-size: 20px;
-      text-align: center;
-      color: #222;
-    }
+.logo{
+  width:110px;
+  display:block;
+  margin:0 auto 10px;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #0f7a41;
-      font-style: italic;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
+h2{
+  margin:2px 0;
+  text-align:center;
+  color:#222;
+}
 
-    label {
-      display: block;
-      margin-top: 14px;
-      font-weight: bold;
-      font-size: 14px;
-      color: #333;
-    }
+.subtitle{
+  text-align:center;
+  color:#0f7a41;
+  font-style:italic;
+  font-size:14px;
+  margin-bottom:15px;
+}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      font-size: 16px;
-      border: 1px solid #bbb;
-      border-radius: 5px;
-    }
+label{
+  display:block;
+  margin-top:14px;
+  font-weight:600;
+  font-size:14px;
+}
 
-    input:focus {
-      outline: none;
-      border-color: #0f7a41;
-      box-shadow: 0 0 0 2px rgba(15,122,65,0.15);
-    }
+input{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  font-size:16px;
+  border:1px solid #bbb;
+  border-radius:6px;
+}
 
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 22px;
-      background-color: #0f7a41;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+input:focus{
+  outline:none;
+  border-color:#0f7a41;
+  box-shadow:0 0 0 2px rgba(15,122,65,0.15);
+}
 
-    button:hover {
-      background-color: #0d6a38;
-    }
+button{
+  width:100%;
+  padding:13px;
+  margin-top:22px;
+  background:#0f7a41;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-    .results {
-      display: none;
-      margin-top: 20px;
-    }
+button:hover{ background:#0d6a38; }
 
-    .student-info {
-      text-align: center;
-      font-weight: bold;
-      color: #0f7a41;
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
+.results{
+  display:none;
+  margin-top:20px;
+}
 
-    .iframe-wrapper {
-      width: 100%;
-      height: 70vh;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #fff;
-    }
+.student-info{
+  text-align:center;
+  font-weight:600;
+  color:#0f7a41;
+  margin-bottom:10px;
+  font-size:16px;
+}
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+.iframe-wrapper{
+  width:100%;
+  height:70vh;
+  border:1px solid #ccc;
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+}
 
-    footer {
-      text-align: center;
-      margin: 25px 0;
-      color: #777;
-      font-size: 13px;
-    }
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
 
-    @media (min-width: 900px) {
-      .container {
-        max-width: 600px;
-      }
-    }
-    /* ===== LOADING SPINNER ===== */
+footer{
+  text-align:center;
+  margin:25px 0;
+  color:#777;
+  font-size:13px;
+}
+
+/* ===== LOADING SPINNER ===== */
 .spinner-overlay{
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
 }
 
 .spinner{
-  width: 60px;
-  height: 60px;
-  border: 6px solid #e5e7eb;
-  border-top: 6px solid #0f7a41;
-  border-radius: 50%;
-  animation: spin 0.9s linear infinite;
+  width:60px;
+  height:60px;
+  border:6px solid #e5e7eb;
+  border-top:6px solid #0f7a41;
+  border-radius:50%;
+  animation:spin 0.9s linear infinite;
 }
 
 @keyframes spin{
-  to{ transform: rotate(360deg); }
+  to{ transform:rotate(360deg); }
 }
-  </style>
+
+/* ===== DEVICE ADAPTIVITY ===== */
+
+/* Small phones */
+@media (max-width:360px){
+  .container{ margin:18px 10px; padding:16px; }
+  h2{ font-size:16px; }
+  .subtitle{ font-size:12px; }
+  input,button{ font-size:14px; padding:10px; }
+  .iframe-wrapper{ height:60vh; }
+}
+
+/* Normal phones */
+@media (min-width:361px) and (max-width:600px){
+  .container{ margin:22px 14px; padding:18px; }
+  h2{ font-size:18px; }
+  .iframe-wrapper{ height:65vh; }
+}
+
+/* Tablets */
+@media (min-width:601px) and (max-width:900px){
+  .container{ max-width:520px; padding:24px; }
+  h2{ font-size:22px; }
+  .iframe-wrapper{ height:72vh; }
+}
+
+/* Laptops & desktops */
+@media (min-width:901px){
+  .container{ max-width:640px; padding:28px; }
+  h2{ font-size:24px; }
+  .iframe-wrapper{ height:78vh; }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-   
   <img src="logo.png" class="logo" alt="School Logo">
 
+  <h2>Blantyre Secondary School</h2>
+  <h2>Examination Results Portal</h2>
+  <div class="subtitle">"Success Comes Through Discipline"</div>
 
+  <form id="resultForm">
+    <label for="examNo">Examination Number</label>
+    <input type="text" id="examNo" required placeholder="Enter your examination number">
 
-    <h2>Blantyre Secondary School</h2>
-    <h2>Examination Results Portal</h2>
-    <div class="subtitle">"Success Comes Through Discipline" </div>
+    <label for="dob">Date of Birth</label>
+    <input type="date" id="dob" required>
 
-    <!-- FORM -->
-<form id="resultForm">
-  <label for="examNo">Examination Number</label>
-  <input type="text" id="examNo" name="examNo" required placeholder="Enter your examination number">
+    <button type="submit">View Report</button>
+  </form>
 
-  <label for="dob">Date of Birth</label>
-  <input type="date" id="dob" name="dob" required>
-
-  <button type="submit">View Report</button>
-</form>
-
-    <!-- RESULTS -->
-    <div class="results" id="resultsDiv">
-      <div class="student-info" id="studentInfo"></div>
-
-      <div class="iframe-wrapper">
-        <iframe id="reportFrame"></iframe>
-      </div>
+  <div class="results" id="resultsDiv">
+    <div class="student-info" id="studentInfo"></div>
+    <div class="iframe-wrapper">
+      <iframe id="reportFrame"></iframe>
     </div>
   </div>
-<!-- LOADING SPINNER -->
+</div>
+
 <div class="spinner-overlay" id="spinner">
   <div class="spinner"></div>
 </div>
-  <footer>© 2026 – Blantyre Secondary School</footer>
+
+<footer>© 2026 – Blantyre Secondary School</footer>
+
 <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbywTjrpa9ybkneTIgLWQl-nE980E58h3qhtmnyS376QCB-Jpu33bv45JiAWDaKWh1ry/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbywTjrpa9ybkneTIgLWQl-nE980E58h3qhtmnyS376QCB-Jpu33bv45JiAWDaKWh1ry/exec";
 
-  const form = document.getElementById("resultForm");
-  const resultsDiv = document.getElementById("resultsDiv");
-  const studentInfo = document.getElementById("studentInfo");
-  const reportFrame = document.getElementById("reportFrame");
-  const spinner = document.getElementById("spinner");
+const form = document.getElementById("resultForm");
+const resultsDiv = document.getElementById("resultsDiv");
+const studentInfo = document.getElementById("studentInfo");
+const reportFrame = document.getElementById("reportFrame");
+const spinner = document.getElementById("spinner");
 
-  function showSpinner(){
-    spinner.style.display = "flex";
-  }
+function showSpinner(){ spinner.style.display="flex"; }
+function hideSpinner(){ spinner.style.display="none"; }
 
-  function hideSpinner(){
-    spinner.style.display = "none";
-  }
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  showSpinner();
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    showSpinner();
+  const examNo = examNo.value.trim();
+  const dobInput = dob.value;
+  const formattedDob = new Date(dobInput).toISOString().split("T")[0];
 
-    const examNo = document.getElementById("examNo").value.trim();
-    const dobInput = document.getElementById("dob").value;
-    const date = new Date(dobInput);
-    const formattedDob = date.toISOString().split("T")[0];
+  try{
+    const res = await fetch(`${API_URL}?examNo=${examNo}&dob=${formattedDob}`);
+    const data = await res.json();
 
-    const url = `${API_URL}?examNo=${examNo}&dob=${formattedDob}`;
-
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (!data.success) {
-        hideSpinner();
-        alert("No report found for the entered details.");
-        return;
-      }
-
-      const driveLink = `https://drive.google.com/file/d/${data.fileId}/preview`;
-      studentInfo.textContent = "Examination Report – " + examNo;
-      reportFrame.src = driveLink;
-
-      form.style.display = "none";
-      resultsDiv.style.display = "block";
-
-      // Hide spinner when iframe fully loads
-      reportFrame.onload = function(){
-        hideSpinner();
-      };
-
-    } catch (err) {
+    if(!data.success){
       hideSpinner();
-      alert("Something went wrong. Check console.");
+      alert("No report found for the entered details.");
+      return;
     }
-  });
+
+    studentInfo.textContent = "Examination Report – " + examNo;
+    reportFrame.src = `https://drive.google.com/file/d/${data.fileId}/preview`;
+
+    form.style.display="none";
+    resultsDiv.style.display="block";
+
+    reportFrame.onload = hideSpinner;
+
+  }catch(err){
+    hideSpinner();
+    alert("Something went wrong.");
+  }
+});
 </script>
 
 </body>
