@@ -211,51 +211,50 @@ footer{
 <footer>© 2026 – Blantyre Secondary School</footer>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbw6Leu9AH_tO3hezjD52i88BTutEXpoZuRFDIFjZXJ683ZYaOR4637SJ9kdhOqJgO3D/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzUeWYpbtWh0hgFxAOynQk2bYWt_YrweaYjTMsa1JIF7aCIihAPM506z1tjp3MaWFLQ/exec";
 
 const form = document.getElementById("resultForm");
 const resultsDiv = document.getElementById("resultsDiv");
 const studentInfo = document.getElementById("studentInfo");
 const reportFrame = document.getElementById("reportFrame");
-const spinner = document.getElementById("spinner");
-const examInput = document.getElementById("examNo");
-const dobInputEl = document.getElementById("dob");
+const loader = document.getElementById("loader");
 
-function showSpinner(){ spinner.style.display="flex"; }
-function hideSpinner(){ spinner.style.display="none"; }
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+}
 
-form.addEventListener("submit", async function(e){
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  showSpinner();
+  loader.style.display = "block";
 
-  const examNo = examInput.value.trim();
-  const formattedDob = new Date(dobInputEl.value)
-    .toISOString()
-    .split("T")[0];
+  const examNo = document.getElementById("examNo").value.trim();
+  const dob = new Date(document.getElementById("dob").value).toISOString().split("T")[0];
+  const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
 
-  try{
-    const res = await fetch(`${API_URL}?examNo=${examNo}&dob=${formattedDob}`);
+  try {
+    const res = await fetch(url);
     const data = await res.json();
+    loader.style.display = "none";
 
-    if(!data.success){
-      hideSpinner();
+    if (!data.success) {
       alert("No report found for the entered details.");
       return;
     }
 
-    // Show results area immediately (better UX)
-    form.style.display="none";
-    resultsDiv.style.display="block";
+    const previewUrl = `https://drive.google.com/file/d/${data.fileId}/preview`;
+    const downloadUrl = `https://drive.google.com/uc?export=download&id=${data.fileId}`;
+
+    reportFrame.src = previewUrl;
+    document.getElementById("downloadBtn").href = downloadUrl;
+
     studentInfo.textContent = "Examination Report – " + examNo;
 
-    // MUCH FASTER than /preview
-    reportFrame.src = `https://drive.google.com/uc?export=download&id=${data.fileId}`;
+    form.style.display = "none";
+    resultsDiv.style.display = "block";
 
-    reportFrame.onload = hideSpinner;
-
-  }catch(err){
-    hideSpinner();
-    alert("Something went wrong.");
+  } catch {
+    loader.style.display = "none";
+    alert("Something went wrong. Try again.");
   }
 });
 </script>
