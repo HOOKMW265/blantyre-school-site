@@ -211,29 +211,34 @@ footer{
 <footer>© 2026 – Blantyre Secondary School</footer>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzUeWYpbtWh0hgFxAOynQk2bYWt_YrweaYjTMsa1JIF7aCIihAPM506z1tjp3MaWFLQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbw6xbyRxFOcRoVxX0NA-XhQBsEh9UzWXi_Mj-WRVPdGbZ1eE4d5EypWTvRp4ySpiE8w/exec";
 
 const form = document.getElementById("resultForm");
 const resultsDiv = document.getElementById("resultsDiv");
 const studentInfo = document.getElementById("studentInfo");
 const reportFrame = document.getElementById("reportFrame");
-const loader = document.getElementById("loader");
-
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-}
+const loader = document.getElementById("spinner");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  loader.style.display = "block";
 
   const examNo = document.getElementById("examNo").value.trim();
-  const dob = new Date(document.getElementById("dob").value).toISOString().split("T")[0];
-  const url = `${API_URL}?examNo=${examNo}&dob=${dob}`;
+  const dobInput = document.getElementById("dob").value;
+
+  if (!examNo || !dobInput) {
+    alert("Fill all fields");
+    return;
+  }
+
+  loader.style.display = "flex";
+
+  const dob = new Date(dobInput).toISOString().split("T")[0];
+  const url = `${API_URL}?examNo=${encodeURIComponent(examNo)}&dob=${dob}`;
 
   try {
     const res = await fetch(url);
     const data = await res.json();
+
     loader.style.display = "none";
 
     if (!data.success) {
@@ -241,18 +246,15 @@ form.addEventListener("submit", async function (e) {
       return;
     }
 
-    const previewUrl = `https://drive.google.com/file/d/${data.fileId}/preview`;
-    const downloadUrl = `https://drive.google.com/uc?export=download&id=${data.fileId}`;
-
-    reportFrame.src = previewUrl;
-    document.getElementById("downloadBtn").href = downloadUrl;
+    // ✅ Apps Script already gives the secure preview URL
+    reportFrame.src = data.previewUrl;
 
     studentInfo.textContent = "Examination Report – " + examNo;
 
     form.style.display = "none";
     resultsDiv.style.display = "block";
 
-  } catch {
+  } catch (err) {
     loader.style.display = "none";
     alert("Something went wrong. Try again.");
   }
