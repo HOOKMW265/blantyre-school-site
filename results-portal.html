@@ -211,27 +211,7 @@ footer{
 <footer>© 2026 – Blantyre Secondary School</footer>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzy_evOgAk4wbwTtdPhIZaEYVxbkrRioxnCiOt0yfp5ouzQGZIm2qfg2qVJ5d9-cQUp/exec";
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const examNo = document.getElementById("examNo").value.trim();
-  const dobInput = document.getElementById("dob").value;
-
-  if (!examNo || !dobInput) {
-    alert("Fill all fields");
-    return;
-  }
-
-  const dob = new Date(dobInput).toISOString().split("T")[0];
-
-  const url = `${API_URL}?examNo=${encodeURIComponent(examNo)}&dob=${dob}`;
-
-  // ✅ OPEN APPS SCRIPT IN NEW TAB (allowed by Google)
-  window.open(url, "_blank");
-});
-</script>";
+const API_URL = "https://script.google.com/macros/s/AKfycbx-j6-apJJSjCP17TUWGkGXj1R71jwCeiV5drf0wjd1ukzm6wx3cGM_qtiHDkow55Vn/exec";
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
