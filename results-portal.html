@@ -236,7 +236,7 @@ form.addEventListener("submit", async function (e) {
   const url = `${API_URL}?examNo=${encodeURIComponent(examNo)}&dob=${dob}`;
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { mode: "cors" });
     const data = await res.json();
 
     loader.style.display = "none";
@@ -246,9 +246,7 @@ form.addEventListener("submit", async function (e) {
       return;
     }
 
-    // ✅ Apps Script already gives the secure preview URL
     reportFrame.src = data.previewUrl;
-
     studentInfo.textContent = "Examination Report – " + examNo;
 
     form.style.display = "none";
