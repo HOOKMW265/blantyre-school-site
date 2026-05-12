@@ -9,14 +9,8 @@
 
 <style>
 *{ box-sizing:border-box; }
+body{ font-family:'Inter',sans-serif; background:#f4f6f8; margin:0; }
 
-body{
-  font-family:'Inter',sans-serif;
-  background:#f4f6f8;
-  margin:0;
-}
-
-/* MAIN CARD */
 .container{
   width:95%;
   max-width:520px;
@@ -27,19 +21,13 @@ body{
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
 }
 
-/* ===== FORM LAYOUT ===== */
-#formLayout .logo{
+.logo{
   width:110px;
   display:block;
   margin:0 auto 10px;
 }
 
-h2{
-  margin:2px 0;
-  text-align:center;
-  color:#222;
-}
-
+h2{ text-align:center; margin:2px 0; }
 .subtitle{
   text-align:center;
   color:#0f7a41;
@@ -48,18 +36,11 @@ h2{
   margin-bottom:15px;
 }
 
-label{
-  display:block;
-  margin-top:14px;
-  font-weight:600;
-  font-size:14px;
-}
-
+label{ display:block; margin-top:14px; font-weight:600; }
 input{
   width:100%;
   padding:12px;
   margin-top:6px;
-  font-size:16px;
   border:1px solid #bbb;
   border-radius:6px;
 }
@@ -70,44 +51,21 @@ button{
   margin-top:22px;
   background:#0f7a41;
   color:#fff;
-  font-size:16px;
-  font-weight:600;
   border:none;
   border-radius:6px;
   cursor:pointer;
 }
 
-/* ===== REPORT LAYOUT ===== */
-#reportLayout{
-  display:none;
-  text-align:center;
-}
-
-#reportLayout img{
-  width:70px;
-  margin-top:10px;
-}
-
-#reportTitle{
-  color:#0f7a41;
-  font-weight:700;
-  margin:10px 0 14px;
-}
-
 .viewer{
+  display:none;
   height:78vh;
+  margin-top:20px;
   border-radius:10px;
   overflow:hidden;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
 }
+.viewer iframe{ width:100%; height:100%; border:none; }
 
-.viewer iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
-
-/* ===== SPINNER ===== */
 .spinner-overlay{
   position:fixed;
   inset:0;
@@ -117,7 +75,6 @@ button{
   justify-content:center;
   z-index:9999;
 }
-
 .spinner{
   width:60px;
   height:60px;
@@ -126,10 +83,7 @@ button{
   border-radius:50%;
   animation:spin 0.9s linear infinite;
 }
-
-@keyframes spin{
-  to{ transform:rotate(360deg); }
-}
+@keyframes spin{ to{ transform:rotate(360deg); } }
 </style>
 </head>
 
@@ -137,37 +91,23 @@ button{
 
 <div class="container">
 
-  <!-- ===== FORM VIEW ===== -->
-  <div id="formLayout">
-    <img src="logo.png" class="logo">
-    <h2>Blantyre Secondary School</h2>
-    <div class="subtitle">"Success Comes Through Discipline"</div>
+  <img src="logo.png" class="logo">
 
-    <form id="resultForm">
-  <label>Examination Number</label>
-  <input type="text" id="examNo" required>
+  <h2>Blantyre Secondary School</h2>
+  <div class="subtitle">"Success Comes Through Discipline"</div>
 
-  <label>Date of Birth</label>
-  <input type="date" id="dob" required>
+  <form id="resultForm">
+    <label for="examNo">Examination Number</label>
+    <input type="text" id="examNo" required>
 
-  <button type="submit">View Report</button>
-</form>
-  </div>
+    <label for="dob">Date of Birth</label>
+    <input type="date" id="dob" required>
 
-  <!-- ===== REPORT VIEW ===== -->
-  <div id="reportLayout">
-    <img src="logo.png">
-    <h2>ResultsHub</h2>
-    <div style="color:#666;font-size:14px;">EXAMINATION RESULTS PORTAL</div>
-    <div style="color:#f59e0b;font-style:italic;font-size:13px;margin:6px 0;">
-      Fast • Secure • Reliable
-    </div>
+    <button type="submit">View Report</button>
+  </form>
 
-    <div id="reportTitle"></div>
-
-    <div class="viewer">
-      <iframe id="bigReportFrame"></iframe>
-    </div>
+  <div class="viewer" id="viewer">
+    <iframe id="bigReportFrame"></iframe>
   </div>
 
 </div>
@@ -181,10 +121,8 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzKRjlOWxhgjEO2hmfQ8Xli
 
 const form = document.getElementById("resultForm");
 const spinner = document.getElementById("spinner");
-const formLayout = document.getElementById("formLayout");
-const reportLayout = document.getElementById("reportLayout");
+const viewer = document.getElementById("viewer");
 const bigFrame = document.getElementById("bigReportFrame");
-const reportTitle = document.getElementById("reportTitle");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -201,9 +139,7 @@ form.addEventListener("submit", async function (e) {
     spinner.style.display = "none";
 
     if (data.status === "success") {
-      formLayout.style.display = "none";
-      reportLayout.style.display = "block";
-      reportTitle.textContent = `Examination Report – ${examNo}`;
+      viewer.style.display = "block";
       bigFrame.src = data.pdf;
     } else {
       alert("Result not found");
