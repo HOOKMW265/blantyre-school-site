@@ -211,25 +211,44 @@ footer{
 <footer>© 2026 – Blantyre Secondary School</footer>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbx-j6-apJJSjCP17TUWGkGXj1R71jwCeiV5drf0wjd1ukzm6wx3cGM_qtiHDkow55Vn/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzzC86FpXhAXlDdfV_zENIclzh3puUtS-0LuKe0ToFMeYsK6HSW2C_vwjoar7WrDU1q/exec";
 
-form.addEventListener("submit", function (e) {
+const form = document.getElementById("resultForm");
+const spinner = document.getElementById("spinner");
+const resultsDiv = document.getElementById("resultsDiv");
+const reportFrame = document.getElementById("reportFrame");
+
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const examNo = document.getElementById("examNo").value.trim();
-  const dobInput = document.getElementById("dob").value;
+  const dob = document.getElementById("dob").value;
 
-  if (!examNo || !dobInput) {
+  if (!examNo || !dob) {
     alert("Fill all fields");
     return;
   }
 
-  const dob = new Date(dobInput).toISOString().split("T")[0];
+  spinner.style.display = "flex";
+  resultsDiv.style.display = "none";
 
-  const url = `${API_URL}?examNo=${encodeURIComponent(examNo)}&dob=${dob}`;
+  try {
+    const res = await fetch(`${API_URL}?examNo=${encodeURIComponent(examNo)}&dob=${dob}`);
+    const data = await res.json();
 
-  // ✅ OPEN APPS SCRIPT IN NEW TAB (allowed by Google)
-  window.open(url, "_blank");
+    spinner.style.display = "none";
+
+    if (data.status === "success") {
+      reportFrame.src = data.pdf;
+      resultsDiv.style.display = "block";
+    } else {
+      alert("Result not found");
+    }
+
+  } catch (err) {
+    spinner.style.display = "none";
+    alert("Connection error");
+  }
 });
 </script>
 </body>
