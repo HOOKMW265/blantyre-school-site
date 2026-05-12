@@ -19,7 +19,7 @@ body{
 /* MAIN CARD */
 .container{
   width:95%;
-  max-width:480px;
+  max-width:520px;
   margin:30px auto;
   padding:22px;
   background:#fff;
@@ -27,7 +27,8 @@ body{
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
 }
 
-.logo{
+/* ===== FORM LAYOUT ===== */
+#formLayout .logo{
   width:110px;
   display:block;
   margin:0 auto 10px;
@@ -63,12 +64,6 @@ input{
   border-radius:6px;
 }
 
-input:focus{
-  outline:none;
-  border-color:#0f7a41;
-  box-shadow:0 0 0 2px rgba(15,122,65,0.15);
-}
-
 button{
   width:100%;
   padding:13px;
@@ -82,44 +77,37 @@ button{
   cursor:pointer;
 }
 
-button:hover{ background:#0d6a38; }
-
-.results{
+/* ===== REPORT LAYOUT ===== */
+#reportLayout{
   display:none;
-  margin-top:20px;
-}
-
-.student-info{
   text-align:center;
-  font-weight:600;
+}
+
+#reportLayout img{
+  width:70px;
+  margin-top:10px;
+}
+
+#reportTitle{
   color:#0f7a41;
-  margin-bottom:10px;
-  font-size:16px;
+  font-weight:700;
+  margin:10px 0 14px;
 }
 
-.iframe-wrapper{
-  width:100%;
-  height:70vh;
-  border:1px solid #ccc;
-  border-radius:8px;
+.viewer{
+  height:78vh;
+  border-radius:10px;
   overflow:hidden;
-  background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
 }
 
-iframe{
+.viewer iframe{
   width:100%;
   height:100%;
   border:none;
 }
 
-footer{
-  text-align:center;
-  margin:25px 0;
-  color:#777;
-  font-size:13px;
-}
-
-/* ===== LOADING SPINNER ===== */
+/* ===== SPINNER ===== */
 .spinner-overlay{
   position:fixed;
   inset:0;
@@ -142,38 +130,6 @@ footer{
 @keyframes spin{
   to{ transform:rotate(360deg); }
 }
-
-/* ===== DEVICE ADAPTIVITY ===== */
-
-/* Small phones */
-@media (max-width:360px){
-  .container{ margin:18px 10px; padding:16px; }
-  h2{ font-size:16px; }
-  .subtitle{ font-size:12px; }
-  input,button{ font-size:14px; padding:10px; }
-  .iframe-wrapper{ height:60vh; }
-}
-
-/* Normal phones */
-@media (min-width:361px) and (max-width:600px){
-  .container{ margin:22px 14px; padding:18px; }
-  h2{ font-size:18px; }
-  .iframe-wrapper{ height:65vh; }
-}
-
-/* Tablets */
-@media (min-width:601px) and (max-width:900px){
-  .container{ max-width:520px; padding:24px; }
-  h2{ font-size:22px; }
-  .iframe-wrapper{ height:72vh; }
-}
-
-/* Laptops & desktops */
-@media (min-width:901px){
-  .container{ max-width:640px; padding:28px; }
-  h2{ font-size:24px; }
-  .iframe-wrapper{ height:78vh; }
-}
 </style>
 </head>
 
@@ -181,42 +137,54 @@ footer{
 
 <div class="container">
 
-  <img src="logo.png" class="logo" alt="School Logo">
+  <!-- ===== FORM VIEW ===== -->
+  <div id="formLayout">
+    <img src="logo.png" class="logo">
+    <h2>Blantyre Secondary School</h2>
+    <div class="subtitle">"Success Comes Through Discipline"</div>
 
-  <h2>Blantyre Secondary School</h2>
-  <div class="subtitle">"Success Comes Through Discipline"</div>
+    <form id="resultForm">
+      <label>Examination Number</label>
+      <input type="text" id="examNo" required>
 
-  <form id="resultForm">
-    <label for="examNo">Examination Number</label>
-    <input type="text" id="examNo" required placeholder="Enter your examination number">
+      <label>Date of Birth</label>
+      <input type="date" id="dob" required>
 
-    <label for="dob">Date of Birth</label>
-    <input type="date" id="dob" required>
+      <button type="submit">View Report</button>
+    </form>
+  </div>
 
-    <button type="submit">View Report</button>
-  </form>
+  <!-- ===== REPORT VIEW ===== -->
+  <div id="reportLayout">
+    <img src="logo.png">
+    <h2>ResultsHub</h2>
+    <div style="color:#666;font-size:14px;">EXAMINATION RESULTS PORTAL</div>
+    <div style="color:#f59e0b;font-style:italic;font-size:13px;margin:6px 0;">
+      Fast • Secure • Reliable
+    </div>
 
-  <div class="results" id="resultsDiv">
-    <div class="student-info" id="studentInfo"></div>
-    <div class="iframe-wrapper">
-      <iframe id="reportFrame"></iframe>
+    <div id="reportTitle"></div>
+
+    <div class="viewer">
+      <iframe id="bigReportFrame"></iframe>
     </div>
   </div>
+
 </div>
 
 <div class="spinner-overlay" id="spinner">
   <div class="spinner"></div>
 </div>
 
-<footer>© 2026 – Blantyre Secondary School</footer>
-
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbzzC86FpXhAXlDdfV_zENIclzh3puUtS-0LuKe0ToFMeYsK6HSW2C_vwjoar7WrDU1q/exec";
 
 const form = document.getElementById("resultForm");
 const spinner = document.getElementById("spinner");
-const resultsDiv = document.getElementById("resultsDiv");
-const reportFrame = document.getElementById("reportFrame");
+const formLayout = document.getElementById("formLayout");
+const reportLayout = document.getElementById("reportLayout");
+const bigFrame = document.getElementById("bigReportFrame");
+const reportTitle = document.getElementById("reportTitle");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -224,13 +192,7 @@ form.addEventListener("submit", async function (e) {
   const examNo = document.getElementById("examNo").value.trim();
   const dob = document.getElementById("dob").value;
 
-  if (!examNo || !dob) {
-    alert("Fill all fields");
-    return;
-  }
-
   spinner.style.display = "flex";
-  resultsDiv.style.display = "none";
 
   try {
     const res = await fetch(`${API_URL}?examNo=${encodeURIComponent(examNo)}&dob=${dob}`);
@@ -239,8 +201,10 @@ form.addEventListener("submit", async function (e) {
     spinner.style.display = "none";
 
     if (data.status === "success") {
-      reportFrame.src = data.pdf;
-      resultsDiv.style.display = "block";
+      formLayout.style.display = "none";
+      reportLayout.style.display = "block";
+      reportTitle.textContent = `Examination Report – ${examNo}`;
+      bigFrame.src = data.pdf;
     } else {
       alert("Result not found");
     }
@@ -251,5 +215,6 @@ form.addEventListener("submit", async function (e) {
   }
 });
 </script>
+
 </body>
 </html>
