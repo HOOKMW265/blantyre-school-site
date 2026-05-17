@@ -56,7 +56,7 @@ button{
   cursor:pointer;
 }
 
-/* ✅ FULL SCREEN VIEWER */
+/* FULL SCREEN VIEWER */
 .viewer{
   position:fixed;
   inset:0;
@@ -68,20 +68,6 @@ button{
   width:100%;
   height:100%;
   border:none;
-}
-
-/* Close button */
-.close-btn{
-  position:absolute;
-  top:15px;
-  right:15px;
-  padding:10px 14px;
-  background:#C9A227;
-  border:none;
-  color:#fff;
-  border-radius:6px;
-  cursor:pointer;
-  z-index:9999;
 }
 
 .spinner-overlay{
@@ -126,9 +112,8 @@ button{
 
 </div>
 
-<!-- ✅ FULL SCREEN PDF VIEWER -->
+<!-- FULL SCREEN PDF VIEWER -->
 <div class="viewer" id="viewer">
-  <button class="close-btn" id="closeViewer">Close</button>
   <iframe id="bigReportFrame"></iframe>
 </div>
 
@@ -143,7 +128,6 @@ const form = document.getElementById("resultForm");
 const spinner = document.getElementById("spinner");
 const viewer = document.getElementById("viewer");
 const bigFrame = document.getElementById("bigReportFrame");
-const closeBtn = document.getElementById("closeViewer");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -171,11 +155,6 @@ form.addEventListener("submit", async function (e) {
     alert("Connection error");
   }
 });
-
-closeBtn.onclick = () => {
-  viewer.style.display = "none";
-  bigFrame.src = "";
-};
 </script>
 
 </body>
