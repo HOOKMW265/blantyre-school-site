@@ -29,27 +29,51 @@ body{ font-family:'Inter',sans-serif; background:#f4f6f8; margin:0; }
 
 h2{ text-align:center; margin:2px 0; }
 
-/* Examination Portal Title - Larger, Colorful & Dynamic */
-.exam-portal-title {
+/* Header Section - Stacked Title Design */
+.header-section {
   text-align: center;
-  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.school-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0056CC;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.portal-title {
+  font-size: 28px;
   font-weight: 700;
-  margin: 15px 0 10px 0;
-  background: linear-gradient(135deg, #C9A227 0%, #D4AF37 50%, #A67C00 100%);
+  color: #0056CC;
+  margin: 8px 0;
+  background: linear-gradient(135deg, #0056CC 0%, #003AA3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: titleGlow 2s ease-in-out infinite, titleFloat 3s ease-in-out infinite;
+  animation: titleGlow 2.5s ease-in-out infinite, titleFloat 3s ease-in-out infinite;
   letter-spacing: 0.5px;
-  text-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+.portal-tagline {
+  font-size: 12px;
+  font-weight: 600;
+  color: #C9A227;
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+.portal-tagline span {
+  margin: 0 4px;
 }
 
 @keyframes titleGlow {
   0%, 100% { 
-    filter: brightness(1) drop-shadow(0 0 5px rgba(201, 162, 39, 0.4));
+    filter: brightness(1) drop-shadow(0 0 5px rgba(0, 86, 204, 0.3));
   }
   50% { 
-    filter: brightness(1.2) drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(0, 86, 204, 0.5));
   }
 }
 
@@ -58,7 +82,7 @@ h2{ text-align:center; margin:2px 0; }
     transform: translateY(0px);
   }
   50% { 
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 }
 
@@ -89,6 +113,7 @@ button{
   border-radius:6px;
   cursor:pointer;
   transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 button:hover {
@@ -124,7 +149,7 @@ button:hover {
   width:60px;
   height:60px;
   border:6px solid #e5e7eb;
-  border-top:6px solid #A67C00;
+  border-top:6px solid #0056CC;
   border-radius:50%;
   animation:spin 0.9s linear infinite;
 }
@@ -153,9 +178,13 @@ button:hover {
 
   <img src="logo.png" class="logo">
 
-  <h2>Blantyre Secondary School</h2>
-  <div class="exam-portal-title">Examination Portal</div>
-  <div class="subtitle">"Success Comes Through Discipline"</div>
+  <div class="header-section">
+    <div class="school-name">Blantyre Secondary School</div>
+    <div class="portal-title">EXAMINATION RESULTS PORTAL</div>
+    <div class="portal-tagline">
+      Fast <span>•</span> Secure <span>•</span> Reliable
+    </div>
+  </div>
 
   <form id="resultForm">
     <label for="examNo">Examination Number</label>
